@@ -1,0 +1,253 @@
+============================================================
+HAMPTONS ELITE POWERWASHING — BUSINESS PLAN & ROADMAP
+============================================================
+Generated: March 2026
+Keep this file. It contains your setup instructions,
+website roadmap, and AI agent architecture plan.
+============================================================
+
+
+SETUP CHECKLIST — DO THIS BEFORE GOING LIVE
+============================================================
+
+STEP 1 — Add your real phone number
+  Search index.html for: XXX-XXXX
+  Replace every instance with your real 7-digit number
+  Also update the tel: links — search for "tel:631"
+  There are about 12 places in index.html to update.
+
+STEP 2 — Set up Formspree (for your contact form)
+  a. Go to https://formspree.io
+  b. Create a free account
+  c. Click "New Form" and name it (e.g. "Hamptons Elite Quote")
+  d. Copy the Form ID (looks like: xabcdefg)
+  e. In index.html, find: YOUR_FORMSPREE_ID
+  f. Replace it with your ID
+  g. The form action will become: https://formspree.io/f/xabcdefg
+  h. You'll receive form submissions at your Formspree email
+
+STEP 3 — Add your real before/after photos
+  Put photos in the images/ folder using these exact filenames:
+    images/hero-bg.jpg   (hero background — pressure washing in action)
+    images/before-1.jpg  (driveway before)
+    images/after-1.jpg   (driveway after)
+    images/before-2.jpg  (house siding before)
+    images/after-2.jpg   (house siding after)
+    images/before-3.jpg  (deck before)
+    images/after-3.jpg   (deck after)
+    images/before-4.jpg  (commercial before)
+    images/after-4.jpg   (commercial after)
+  Tip: Take photos at the same angle before and after each job.
+  Even iPhone photos look great on a website.
+
+STEP 4 — Replace placeholder testimonials
+  In index.html, find the 3 testimonial cards (search "REPLACE WITH REAL REVIEW")
+  Paste in real Google reviews as you get them
+  Use first name + neighborhood only (e.g. "Mike D. — Huntington")
+
+STEP 5 — Set up Google Business Profile
+  a. Go to https://business.google.com
+  b. Create your free profile (takes ~10 minutes)
+  c. Verify your business (Google mails a postcard)
+  d. Once live, click Share > copy your review link
+  e. In index.html, find: YOUR_GOOGLE_REVIEW_LINK
+  f. Replace it with your actual link
+  This is how customers find you on Google Maps and leave reviews.
+
+STEP 6 — Go live on Netlify (free hosting)
+  a. Go to https://netlify.com/drop (or netlify.com, click Sites > Add)
+  b. Drag your entire hamptons-elite-powerwashing/ folder onto the page
+  c. Netlify gives you a URL like random-name.netlify.app immediately
+  d. You can connect a custom domain (hamptonsepowerwashing.com) later
+  Done — your site is live in under 60 seconds.
+
+
+============================================================
+WEBSITE ARCHITECTURE
+============================================================
+
+Files:
+  index.html   — Full single-page website, all content
+  style.css    — Mobile-first CSS, navy/white/orange theme
+  script.js    — Mobile menu, smooth scroll, form submission
+  images/      — Place all photos here
+
+Page Sections:
+  1. Sticky Header     — Phone number always visible, hamburger on mobile
+  2. Hero              — Big headline, huge phone number, two CTAs
+  3. Services          — Residential + Commercial toggle, 8+7 service cards
+  4. Why Choose Us     — 4 trust tiles: insured, local, free estimates, guarantee
+  5. Before & After    — 4 before/after pairs (swap in your real photos)
+  6. Testimonials      — 3 review cards (replace with real Google reviews)
+  7. Callback Form     — Full quote request form, submits to Formspree
+  8. Service Area      — Nassau & Suffolk town list (boosts local SEO)
+  9. Footer            — Phone, links, copyright
+
+Design Principles (Elderly & Mobile Friendly):
+  - Minimum 20px body text — readable without squinting
+  - Navy #0A2342, Orange #FF6B00, White #FFFFFF — high contrast only
+  - All buttons minimum 48x48px tap targets
+  - Phone number visible at all times in sticky header
+  - One clear call to action per section
+  - No carousels, no hover-only menus, no confusing animations
+  - WCAG AA color contrast throughout
+
+SEO Built In:
+  - Title tag targets "pressure washing Long Island"
+  - Meta description targets Nassau & Suffolk County searches
+  - LocalBusiness JSON-LD structured data in <head>
+  - All town names listed in Service Area section
+  - Semantic HTML5 (header, main, section, article, footer)
+  - Descriptive alt text on all images
+
+
+============================================================
+RESIDENTIAL SERVICES & STARTING PRICES
+============================================================
+
+Service                          Starting Price
+------                           --------------
+Driveway & Walkway Cleaning      $150
+House & Vinyl Siding Wash        $300
+Deck & Patio Cleaning            $175
+Roof Soft Washing                $350
+Fence Cleaning                   $125
+Pool Deck & Concrete Cleaning    $150
+Gutter Brightening               $100
+Oil & Rust Stain Removal         Call for Pricing
+
+
+============================================================
+COMMERCIAL SERVICES
+============================================================
+
+All commercial work is priced on-site or by phone:
+  - Storefront & Building Exterior
+  - Parking Lot & Garage Cleaning
+  - Dumpster Pad Sanitizing
+  - Restaurant Exterior & Grease Removal
+  - Graffiti Removal
+  - Fleet & Equipment Washing
+  - Property Management Contracts (Monthly/Seasonal Plans)
+
+
+============================================================
+SERVICE AREA
+============================================================
+
+Nassau County:
+  Hempstead, Oyster Bay, Great Neck, Garden City, Mineola,
+  Hicksville, Plainview, Massapequa, Lynbrook, Valley Stream,
+  Freeport, Long Beach, Rockville Centre, Merrick, Baldwin,
+  Westbury, Floral Park, Elmont, New Hyde Park, Farmingdale
+
+Suffolk County:
+  Huntington, Babylon, Islip, Smithtown, Brentwood, Amityville,
+  Bay Shore, Copiague, Deer Park, Hauppauge, Bohemia, Ronkonkoma,
+  Lake Grove, Selden, Centereach, Middle Island, Riverhead,
+  Patchogue, Sayville, Southampton, East Hampton, Bridgehampton,
+  Hampton Bays
+
+
+============================================================
+PHASE 2 — AI AGENT ARCHITECTURE (FUTURE)
+============================================================
+
+Once the website is live and you're getting form submissions,
+Phase 2 adds AI agents to help you run the business efficiently.
+
+CORE PRINCIPLE — Human in the Loop (Non-Negotiable):
+  Agents DRAFT messages and tasks.
+  They NEVER send or act without your approval.
+  Every agent action is logged for your review.
+  Keeps the business personal. Protects your reputation.
+
+Approval Flow:
+  Agent drafts → sends YOU a notification (text or email)
+  → You approve, edit, or reject → THEN it sends
+
+Planned Agents (in priority order):
+
+1. LEADS AGENT
+   Trigger: New form submission arrives from Formspree
+   Action:  Drafts a personalized follow-up message to the lead
+   You:     Review draft → approve → it sends the message
+   Benefit: Respond to leads within minutes, 24/7
+
+2. SCHEDULING AGENT
+   Trigger: Lead is ready to book
+   Action:  Suggests available time slots based on your calendar
+   You:     Confirm the time → customer is notified
+   Benefit: No back-and-forth phone tag
+
+3. REVIEWS AGENT
+   Trigger: Job is marked complete
+   Action:  Drafts a thank-you + Google review request for that customer
+   You:     Approve per job → message goes out
+   Benefit: Consistent review requests, personal tone
+
+4. FINANCE AGENT
+   Trigger: Job complete, price agreed
+   Action:  Generates invoice with job details, sends for your review
+   You:     Review → send to customer
+   Benefit: Professional invoicing, no paperwork headaches
+
+5. MARKETING AGENT
+   Trigger: You complete a great job with good before/after photos
+   Action:  Drafts social post captions for Facebook/Instagram/NextDoor
+   You:     Approve → post yourself or auto-publish
+   Benefit: Consistent social presence without the time drain
+
+6. ESTIMATING AGENT
+   Trigger: New lead with address and service type
+   Action:  Generates a price estimate based on service + property size
+   You:     Review and confirm before quoting the customer
+   Benefit: Faster, more consistent quotes
+
+Website Forms Are Agent-Ready:
+  All form fields use clean, consistent names:
+    name, phone, email, call_time, service, address, notes
+  Formspree supports webhooks — pipe form data to an agent workflow
+  No custom field names that would break automation later
+
+
+============================================================
+WHY THESE DESIGN CHOICES WORK
+============================================================
+
+Research findings that drove the design:
+  - 78% of local mobile searches convert within 24 hours
+  - Before/after galleries are the #1 trust-building element
+  - Response speed matters more than price to most homeowners
+  - Elderly users have longer decision cycles — trust signals matter more
+  - Mobile users tap phone numbers directly — make them obvious and big
+
+What makes this site different:
+  - Phone number in sticky header = always one tap away
+  - Hero phone number is 4rem+ = impossible to miss
+  - Dual CTA: Call Now (immediate) + Callback Form (non-phone users)
+  - Service cards show real prices — builds trust, reduces friction
+  - Town name list boosts Google rankings for local searches
+  - No clutter, no confusion — one job per section
+
+
+============================================================
+CONTACT & CREDENTIALS
+============================================================
+
+Website email placeholder: info@hamptonsepowerwashing.com
+  (Set up a real email or forward to your personal one)
+
+Formspree: https://formspree.io (free tier = 50 submissions/month)
+Netlify:   https://netlify.com (free tier = plenty for a local business)
+Google Business: https://business.google.com (free — essential for local SEO)
+
+
+============================================================
+END OF BUSINESS PLAN
+============================================================
+Keep this file safe. It's your roadmap for Phase 1 (website)
+and Phase 2 (AI agents). The website files are in this folder.
+A backup copy is saved at:
+  C:\Users\Sean Goudy\Documents\hamptons-elite-powerwashing-plan.txt
+============================================================
