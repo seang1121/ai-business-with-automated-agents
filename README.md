@@ -122,6 +122,28 @@ business:
 
 The agents automatically adapt their tone, terminology, and behavior based on the business type. No code changes required.
 
+### Ready-to-Use Examples
+
+Full configs for 6 business types are in the `examples/` folder. Copy any one into `business_config.yaml` to try it:
+
+| Example | File | Business Type |
+|---------|------|--------------|
+| Pressure Washing | `examples/` (default config) | Home services |
+| Law Firm | `examples/law-firm.yaml` | Professional services |
+| Dental Office | `examples/dental-office.yaml` | Healthcare |
+| Real Estate | `examples/real-estate.yaml` | Sales / brokerage |
+| Restaurant / Catering | `examples/restaurant.yaml` | Food & hospitality |
+| Auto Detailing | `examples/auto-detailing.yaml` | Mobile services |
+| Landscaping | `examples/landscaping.yaml` | Seasonal services |
+
+```bash
+# Try the law firm example:
+cp examples/law-firm.yaml business_config.yaml
+python backend/app.py
+```
+
+Each example includes realistic services, pricing, hours, agent tone settings, tax rates, and social media hashtags for that industry.
+
 ---
 
 ## Project Structure
@@ -172,6 +194,7 @@ ai-business-with-automated-agents/
 |   |-- integrations/           # Third-party integrations
 |       |-- openclaw_integration.py  # OpenClaw AI assistant
 |
+|-- examples/                   # Ready-to-use configs for 6+ business types
 |-- tests/                      # Test suite
 |-- project-docs/               # Architecture documentation
 ```

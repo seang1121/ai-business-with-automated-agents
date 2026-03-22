@@ -1,0 +1,129 @@
+# =============================================================
+# EXAMPLE: Landscaping & Lawn Care
+# =============================================================
+# Copy this into business_config.yaml to configure for landscaping.
+# =============================================================
+
+business:
+  name: "GreenEdge Landscaping"
+  type: "landscaping"
+  owner_name: "Miguel Torres"
+  phone: "(555) 000-0000"
+  email: "info@greenedgelandscaping.com"
+  website: "https://greenedgelandscaping.com"
+  tagline: "Professional lawn care and landscaping — residential and commercial"
+
+  service_area:
+    regions:
+      - "Fairfield County, CT"
+    towns:
+      - "Stamford"
+      - "Greenwich"
+      - "Norwalk"
+      - "Darien"
+      - "Westport"
+      - "Fairfield"
+      - "New Canaan"
+
+  services:
+    - name: "Weekly Lawn Mowing"
+      category: "maintenance"
+      starting_price: 45
+      unit: "per visit"
+      estimate_factors: ["lawn_size"]
+
+    - name: "Spring/Fall Cleanup"
+      category: "seasonal"
+      starting_price: 200
+      unit: "per visit"
+      estimate_factors: ["property_size", "leaf_volume"]
+
+    - name: "Landscape Design & Installation"
+      category: "design"
+      starting_price: 1500
+      unit: "per project"
+      estimate_factors: ["area_size", "plant_selection"]
+
+    - name: "Mulching & Bed Maintenance"
+      category: "maintenance"
+      starting_price: 150
+      unit: "per visit"
+      estimate_factors: ["bed_count", "mulch_depth"]
+
+    - name: "Tree & Shrub Trimming"
+      category: "maintenance"
+      starting_price: 175
+      unit: "per visit"
+      estimate_factors: ["tree_count", "height"]
+
+    - name: "Irrigation System Install/Repair"
+      category: "irrigation"
+      starting_price: 500
+      unit: "per project"
+      estimate_factors: ["zone_count", "system_age"]
+
+    - name: "Snow Removal (Seasonal Contract)"
+      category: "seasonal"
+      starting_price: 75
+      unit: "per visit or seasonal"
+      estimate_factors: ["driveway_size", "commercial"]
+
+  hours:
+    monday:    { start: "06:30", end: "18:00" }
+    tuesday:   { start: "06:30", end: "18:00" }
+    wednesday: { start: "06:30", end: "18:00" }
+    thursday:  { start: "06:30", end: "18:00" }
+    friday:    { start: "06:30", end: "18:00" }
+    saturday:  { start: "07:00", end: "14:00" }
+    sunday:    null
+
+  slot_duration_minutes: 60
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "down-to-earth, professional, and reliable"
+    max_response_delay_minutes: 5
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 45
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 6
+    review_platform: "google"
+  finance:
+    enabled: true
+    invoice_prefix: "GEL"
+    payment_methods:
+      - "Check"
+      - "Venmo"
+      - "Credit Card"
+    tax_rate: 0.0635  # CT sales tax
+  marketing:
+    enabled: true
+    platforms: ["facebook", "instagram", "nextdoor"]
+    hashtags: ["#landscaping", "#lawncare", "#fairfieldcounty", "#curbappeal", "#greenthumb"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0       # Small yard (< 5,000 sq ft)
+      medium: 1.5      # Medium (5,000-10,000 sq ft)
+      large: 2.5       # Large (10,000-20,000 sq ft)
+      xlarge: 4.0      # Estate (20,000+ sq ft)
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "miguel@greenedgelandscaping.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring

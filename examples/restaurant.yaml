@@ -1,0 +1,123 @@
+# =============================================================
+# EXAMPLE: Restaurant / Catering
+# =============================================================
+# Copy this into business_config.yaml to configure for a restaurant.
+# =============================================================
+
+business:
+  name: "Nonna's Kitchen"
+  type: "restaurant_catering"
+  owner_name: "Marco Russo"
+  phone: "(555) 000-0000"
+  email: "info@nonnaskitchen.com"
+  website: "https://nonnaskitchen.com"
+  tagline: "Authentic Italian cuisine and catering for every occasion"
+
+  service_area:
+    regions:
+      - "Westchester County, NY"
+    towns:
+      - "White Plains"
+      - "Yonkers"
+      - "New Rochelle"
+      - "Scarsdale"
+      - "Tarrytown"
+      - "Mamaroneck"
+
+  services:
+    - name: "Private Event Catering"
+      category: "catering"
+      starting_price: 35
+      unit: "per person (min 20 guests)"
+      estimate_factors: ["guest_count", "menu_selection"]
+
+    - name: "Corporate Lunch Catering"
+      category: "catering"
+      starting_price: 18
+      unit: "per person (min 10)"
+      estimate_factors: ["guest_count", "delivery_distance"]
+
+    - name: "Wedding Catering"
+      category: "catering"
+      starting_price: 75
+      unit: "per person"
+      estimate_factors: ["guest_count", "menu_tier", "bar_package"]
+
+    - name: "Party Platters & Trays"
+      category: "takeout"
+      starting_price: 45
+      unit: "per tray (feeds 8-10)"
+      estimate_factors: ["tray_count"]
+
+    - name: "Private Dining Room"
+      category: "events"
+      starting_price: 500
+      unit: "minimum spend"
+      estimate_factors: ["guest_count", "day_of_week"]
+
+    - name: "Cooking Class"
+      category: "events"
+      starting_price: 85
+      unit: "per person"
+      estimate_factors: ["class_size"]
+
+  hours:
+    monday:    null  # Closed
+    tuesday:   { start: "11:00", end: "22:00" }
+    wednesday: { start: "11:00", end: "22:00" }
+    thursday:  { start: "11:00", end: "22:00" }
+    friday:    { start: "11:00", end: "23:00" }
+    saturday:  { start: "11:00", end: "23:00" }
+    sunday:    { start: "12:00", end: "21:00" }
+
+  slot_duration_minutes: 120
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "warm, inviting, and enthusiastic about food"
+    max_response_delay_minutes: 10
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 60
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 12
+    review_platform: "google"
+  finance:
+    enabled: true
+    invoice_prefix: "NK"
+    payment_methods:
+      - "Credit Card"
+      - "Cash"
+      - "Venmo"
+      - "Check (catering only)"
+    tax_rate: 0.08875  # NY + Westchester
+  marketing:
+    enabled: true
+    platforms: ["instagram", "facebook", "tiktok"]
+    hashtags: ["#italianfood", "#catering", "#westchestereats", "#nonnaskitchen", "#foodie"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0
+      medium: 1.5
+      large: 2.5
+      xlarge: 4.0
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "marco@nonnaskitchen.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring

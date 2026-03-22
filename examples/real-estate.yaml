@@ -1,0 +1,118 @@
+# =============================================================
+# EXAMPLE: Real Estate Agent / Brokerage
+# =============================================================
+# Copy this into business_config.yaml to configure for real estate.
+# =============================================================
+
+business:
+  name: "Martinez Realty Group"
+  type: "real_estate"
+  owner_name: "Lisa Martinez"
+  phone: "(555) 000-0000"
+  email: "lisa@martinezrealty.com"
+  website: "https://martinezrealty.com"
+  tagline: "Your trusted guide to buying and selling in South Florida"
+
+  service_area:
+    regions:
+      - "Miami-Dade County, FL"
+      - "Broward County, FL"
+    towns:
+      - "Miami"
+      - "Fort Lauderdale"
+      - "Coral Gables"
+      - "Brickell"
+      - "Coconut Grove"
+      - "Hollywood"
+      - "Aventura"
+
+  services:
+    - name: "Home Buying Consultation"
+      category: "buying"
+      starting_price: 0
+      unit: "free consultation"
+      estimate_factors: []
+
+    - name: "Home Listing & Sale"
+      category: "selling"
+      starting_price: null
+      unit: "commission-based"
+      estimate_factors: ["home_value", "market_conditions"]
+
+    - name: "Investment Property Analysis"
+      category: "investment"
+      starting_price: 250
+      unit: "per analysis"
+      estimate_factors: ["property_count"]
+
+    - name: "First-Time Buyer Program"
+      category: "buying"
+      starting_price: 0
+      unit: "free consultation"
+      estimate_factors: []
+
+    - name: "Rental Property Management"
+      category: "management"
+      starting_price: null
+      unit: "percentage of rent"
+      estimate_factors: ["property_count", "unit_count"]
+
+    - name: "Commercial Real Estate"
+      category: "commercial"
+      starting_price: null
+      unit: "commission-based"
+      estimate_factors: ["property_type", "square_footage"]
+
+  hours:
+    monday:    { start: "09:00", end: "19:00" }
+    tuesday:   { start: "09:00", end: "19:00" }
+    wednesday: { start: "09:00", end: "19:00" }
+    thursday:  { start: "09:00", end: "19:00" }
+    friday:    { start: "09:00", end: "19:00" }
+    saturday:  { start: "10:00", end: "16:00" }
+    sunday:    { start: "11:00", end: "15:00" }
+
+  slot_duration_minutes: 45
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "enthusiastic, knowledgeable, and personable"
+    max_response_delay_minutes: 3
+  scheduling:
+    enabled: true
+    slots_to_suggest: 4
+    buffer_between_jobs_minutes: 30
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 48
+    review_platform: "google"
+  finance:
+    enabled: false  # Real estate invoicing is handled by brokerage
+  marketing:
+    enabled: true
+    platforms: ["instagram", "facebook", "tiktok"]
+    hashtags: ["#miamirealestate", "#homesearch", "#southflorida", "#justlisted", "#dreamhome"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0
+      medium: 1.5
+      large: 2.0
+      xlarge: 3.0
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "lisa@martinezrealty.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring

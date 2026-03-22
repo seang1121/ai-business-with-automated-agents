@@ -1,0 +1,130 @@
+# =============================================================
+# EXAMPLE: Auto Detailing
+# =============================================================
+# Copy this into business_config.yaml to configure for auto detailing.
+# =============================================================
+
+business:
+  name: "Apex Auto Detailing"
+  type: "auto_detailing"
+  owner_name: "Derek Washington"
+  phone: "(555) 000-0000"
+  email: "info@apexdetailing.com"
+  website: "https://apexdetailing.com"
+  tagline: "Mobile detailing that comes to you — cars, trucks, boats"
+
+  service_area:
+    regions:
+      - "Austin, TX"
+      - "Travis County, TX"
+    towns:
+      - "Austin"
+      - "Round Rock"
+      - "Cedar Park"
+      - "Pflugerville"
+      - "Lakeway"
+      - "Bee Cave"
+
+  services:
+    - name: "Exterior Wash & Wax"
+      category: "standard"
+      starting_price: 75
+      unit: "per vehicle"
+      estimate_factors: ["vehicle_size"]
+
+    - name: "Full Interior Detail"
+      category: "standard"
+      starting_price: 125
+      unit: "per vehicle"
+      estimate_factors: ["vehicle_size", "condition"]
+
+    - name: "Complete Detail (Interior + Exterior)"
+      category: "premium"
+      starting_price: 175
+      unit: "per vehicle"
+      estimate_factors: ["vehicle_size", "condition"]
+
+    - name: "Paint Correction & Polish"
+      category: "premium"
+      starting_price: 300
+      unit: "per vehicle"
+      estimate_factors: ["paint_condition", "vehicle_size"]
+
+    - name: "Ceramic Coating"
+      category: "premium"
+      starting_price: 500
+      unit: "per vehicle"
+      estimate_factors: ["vehicle_size", "coating_tier"]
+
+    - name: "Boat & Marine Detailing"
+      category: "specialty"
+      starting_price: 250
+      unit: "per vessel"
+      estimate_factors: ["boat_length"]
+
+    - name: "Fleet Detailing"
+      category: "commercial"
+      starting_price: null
+      unit: "per vehicle (volume discount)"
+      estimate_factors: ["fleet_size"]
+
+  hours:
+    monday:    { start: "07:00", end: "18:00" }
+    tuesday:   { start: "07:00", end: "18:00" }
+    wednesday: { start: "07:00", end: "18:00" }
+    thursday:  { start: "07:00", end: "18:00" }
+    friday:    { start: "07:00", end: "18:00" }
+    saturday:  { start: "08:00", end: "16:00" }
+    sunday:    null
+
+  slot_duration_minutes: 90
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "friendly, detail-oriented, and enthusiastic"
+    max_response_delay_minutes: 5
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 30
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 3
+    review_platform: "google"
+  finance:
+    enabled: true
+    invoice_prefix: "APX"
+    payment_methods:
+      - "Cash"
+      - "Venmo"
+      - "Zelle"
+      - "Credit Card"
+    tax_rate: 0.0825  # TX sales tax
+  marketing:
+    enabled: true
+    platforms: ["instagram", "facebook", "tiktok"]
+    hashtags: ["#autodetailing", "#austintx", "#ceramiccoating", "#mobiledetailing", "#beforeandafter"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0       # Sedan / coupe
+      medium: 1.3      # SUV / crossover
+      large: 1.6       # Truck / van
+      xlarge: 2.0      # Boat / fleet
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "derek@apexdetailing.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring

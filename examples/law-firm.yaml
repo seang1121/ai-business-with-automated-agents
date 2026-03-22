@@ -1,0 +1,123 @@
+# =============================================================
+# EXAMPLE: Family Law Firm
+# =============================================================
+# Copy this into business_config.yaml to configure for a law firm.
+# Agents will adapt tone, terminology, and behavior automatically.
+# =============================================================
+
+business:
+  name: "Smith & Associates Family Law"
+  type: "family_law"
+  owner_name: "Sarah Smith, Esq."
+  phone: "(555) 000-0000"
+  email: "info@smithfamilylaw.com"
+  website: "https://smithfamilylaw.com"
+  tagline: "Compassionate legal counsel for families in transition"
+
+  service_area:
+    regions:
+      - "Nassau County, NY"
+      - "Suffolk County, NY"
+    towns:
+      - "Garden City"
+      - "Mineola"
+      - "Hempstead"
+      - "Hicksville"
+      - "Great Neck"
+
+  services:
+    - name: "Divorce & Separation"
+      category: "family"
+      starting_price: 500
+      unit: "initial consultation"
+      estimate_factors: ["complexity", "contested_vs_uncontested"]
+
+    - name: "Child Custody & Visitation"
+      category: "family"
+      starting_price: 500
+      unit: "initial consultation"
+      estimate_factors: ["complexity", "mediation_needed"]
+
+    - name: "Child Support Modifications"
+      category: "family"
+      starting_price: 400
+      unit: "consultation"
+      estimate_factors: ["income_change"]
+
+    - name: "Prenuptial Agreements"
+      category: "family"
+      starting_price: 1500
+      unit: "flat fee"
+      estimate_factors: ["asset_complexity"]
+
+    - name: "Estate Planning & Wills"
+      category: "estate"
+      starting_price: 750
+      unit: "flat fee"
+      estimate_factors: ["estate_size", "trust_needed"]
+
+    - name: "Adoption"
+      category: "family"
+      starting_price: 3000
+      unit: "flat fee"
+      estimate_factors: ["domestic_vs_international"]
+
+  hours:
+    monday:    { start: "09:00", end: "17:00" }
+    tuesday:   { start: "09:00", end: "17:00" }
+    wednesday: { start: "09:00", end: "17:00" }
+    thursday:  { start: "09:00", end: "17:00" }
+    friday:    { start: "09:00", end: "17:00" }
+    saturday:  null
+    sunday:    null
+
+  slot_duration_minutes: 30
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "empathetic, professional, and reassuring"
+    max_response_delay_minutes: 5
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 15
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 24
+    review_platform: "google"
+  finance:
+    enabled: true
+    invoice_prefix: "SFA"
+    payment_methods:
+      - "Check"
+      - "Credit Card"
+      - "Wire Transfer"
+    tax_rate: 0.0  # Legal services exempt in NY
+  marketing:
+    enabled: true
+    platforms: ["linkedin", "facebook"]
+    hashtags: ["#familylaw", "#divorceattorney", "#nassaucounty", "#legalhelp"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0
+      medium: 2.0
+      large: 3.5
+      xlarge: 5.0
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "sarah@smithfamilylaw.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring

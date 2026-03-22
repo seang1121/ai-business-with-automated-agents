@@ -1,0 +1,123 @@
+# =============================================================
+# EXAMPLE: Dental Office
+# =============================================================
+# Copy this into business_config.yaml to configure for a dentist.
+# =============================================================
+
+business:
+  name: "Bright Smile Dental"
+  type: "dental"
+  owner_name: "Dr. James Chen"
+  phone: "(555) 000-0000"
+  email: "info@brightsmiledental.com"
+  website: "https://brightsmiledental.com"
+  tagline: "Gentle, modern dentistry for the whole family"
+
+  service_area:
+    regions:
+      - "Brooklyn, NY"
+      - "Queens, NY"
+    towns:
+      - "Park Slope"
+      - "Williamsburg"
+      - "Bushwick"
+      - "Astoria"
+      - "Long Island City"
+
+  services:
+    - name: "Teeth Cleaning & Exam"
+      category: "preventive"
+      starting_price: 150
+      unit: "per visit"
+      estimate_factors: ["insurance_coverage"]
+
+    - name: "Teeth Whitening"
+      category: "cosmetic"
+      starting_price: 350
+      unit: "per session"
+      estimate_factors: ["method"]
+
+    - name: "Dental Implants"
+      category: "restorative"
+      starting_price: 3000
+      unit: "per implant"
+      estimate_factors: ["bone_density", "implant_count"]
+
+    - name: "Invisalign / Clear Aligners"
+      category: "orthodontic"
+      starting_price: 4000
+      unit: "full treatment"
+      estimate_factors: ["severity", "treatment_length"]
+
+    - name: "Root Canal"
+      category: "restorative"
+      starting_price: 800
+      unit: "per tooth"
+      estimate_factors: ["tooth_location"]
+
+    - name: "Emergency Dental Care"
+      category: "emergency"
+      starting_price: 200
+      unit: "per visit"
+      estimate_factors: []
+
+  hours:
+    monday:    { start: "08:00", end: "18:00" }
+    tuesday:   { start: "08:00", end: "18:00" }
+    wednesday: { start: "08:00", end: "18:00" }
+    thursday:  { start: "08:00", end: "18:00" }
+    friday:    { start: "08:00", end: "16:00" }
+    saturday:  { start: "09:00", end: "14:00" }
+    sunday:    null
+
+  slot_duration_minutes: 30
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+agents:
+  leads:
+    enabled: true
+    response_tone: "warm, professional, and calming"
+    max_response_delay_minutes: 5
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 15
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 4
+    review_platform: "google"
+  finance:
+    enabled: true
+    invoice_prefix: "BSD"
+    payment_methods:
+      - "Insurance"
+      - "Credit Card"
+      - "CareCredit"
+      - "Cash"
+    tax_rate: 0.0  # Medical services exempt
+  marketing:
+    enabled: true
+    platforms: ["instagram", "facebook"]
+    hashtags: ["#dentist", "#brightersmile", "#brooklyndentist", "#cosmeticdentistry"]
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0
+      medium: 1.3
+      large: 1.8
+      xlarge: 2.5
+
+mode: "demo"
+
+notifications:
+  method: "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "dr.chen@brightsmiledental.com"
+
+integrations:
+  openclaw:
+    enabled: false
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay
+      - proactive_monitoring
