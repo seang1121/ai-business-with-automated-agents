@@ -1,23 +1,37 @@
 # AI Business with Automated Agents
 
-A complete local service business website with a built-in roadmap for AI-powered automated agents that handle leads, scheduling, reviews, invoicing, marketing, and estimating — so one person can run an entire business.
+A plug-and-play system that lets one person run an entire business using AI agents as automated employees. Configure it for **any** business type — pressure washing, law firm, dentist, landscaping, restaurant, real estate — change one config file and the agents adapt.
 
-**Live Demo:** https://seang1121.github.io/ai-business-with-automated-agents
+**Live Demo (Website):** https://seang1121.github.io/ai-business-with-automated-agents
 
 ---
 
-## What This Is
+## How It Works
 
-A production-ready website template for any local service business (pressure washing, landscaping, HVAC, plumbing, cleaning — anything), paired with an AI agent architecture that automates the operational side of the business.
-
-**Phase 1 — The Website (Complete)**
-A conversion-optimized, mobile-first marketing site. A customer finds you on Google, sees the phone number, and calls. That's the entire funnel.
-
-**Phase 2 — Automated AI Agents (Planned)**
-Six AI agents that act as your automated employees — drafting follow-ups, scheduling jobs, requesting reviews, generating invoices, posting to social media, and calculating estimates. Every agent drafts and waits for owner approval before anything goes out.
-
-**Phase 3 — Scale (Future)**
-Online self-booking, seasonal outreach, referral tracking, job photo archives, and multi-crew scheduling.
+```
+                         business_config.yaml
+                                |
+                    +-----------+-----------+
+                    |                       |
+              Phase 1: WEBSITE        Phase 2: AI AGENTS
+              (index.html)            (Python backend)
+                    |                       |
+            Customer finds you      6 agents run your ops
+            on Google, calls        +-----------------------+
+                    |               | Leads Agent           |
+                    +---> Form ---> | Estimating Agent      |
+                          Submit    | Scheduling Agent      |
+                                    | Reviews Agent         |
+                                    | Finance Agent         |
+                                    | Marketing Agent       |
+                                    +-----------+-----------+
+                                                |
+                                          APPROVAL QUEUE
+                                                |
+                                    Owner approves/edits/rejects
+                                                |
+                                          Message sent
+```
 
 ---
 
@@ -25,87 +39,215 @@ Online self-booking, seasonal outreach, referral tracking, job photo archives, a
 
 | Agent | Trigger | What It Does |
 |-------|---------|-------------|
-| **Leads Agent** | New form submission | Drafts personalized follow-up within minutes |
-| **Scheduling Agent** | Lead ready to book | Suggests time slots from your calendar |
-| **Reviews Agent** | Job marked complete | Drafts thank-you + Google review request |
-| **Finance Agent** | Job complete, price agreed | Generates professional invoice |
-| **Marketing Agent** | Good before/after photos | Drafts social media posts with captions |
-| **Estimating Agent** | New lead with address | Calculates ballpark estimate by service + property |
+| **Leads** | New form submission | Drafts personalized follow-up within minutes |
+| **Estimating** | Lead with address + service | Calculates ballpark price range |
+| **Scheduling** | Lead ready to book | Suggests available time slots |
+| **Reviews** | Job marked complete | Drafts thank-you + Google review request |
+| **Finance** | Job complete + price agreed | Generates professional invoice |
+| **Marketing** | Manual trigger | Drafts social media posts with hashtags |
 
-**Core principle:** Agents draft, you approve. Nothing sends without your say-so.
-
----
-
-## Tech Stack
-
-### Phase 1 (Website)
-Plain HTML + CSS + Vanilla JS — zero dependencies, zero build step, opens in any browser offline. Hosted free on GitHub Pages.
-
-```
-ai-business-with-automated-agents/
-├── index.html         # Full single-page site
-├── style.css          # Mobile-first responsive styles
-├── script.js          # Mobile menu, smooth scroll, sticky header
-├── README.md          # This file
-├── BUSINESS-PLAN.txt  # Full roadmap + setup checklist
-└── images/            # Before/after photos go here
-```
-
-### Phase 2 (Agents — Planned)
-- **Claude API** — agent reasoning and message drafting
-- **Formspree webhooks** — form submission triggers
-- **Twilio** — SMS approval flow for the owner
-- **SQLite or Airtable** — job and lead logging
-- **Approval UI** — owner approves/edits/rejects with one tap
+**Core rule:** Agents draft, you approve. Nothing sends without your say-so.
 
 ---
 
 ## Quick Start
 
-1. Clone this repo
-2. Open `index.html` — search and replace all `[bracketed placeholders]` with your real info
-3. Replace `(555) 000-0000` with your phone number everywhere
-4. Replace `info@yourbusiness.com` with your email
-5. Add your before/after photos to `images/`
-6. Set up [Formspree](https://formspree.io) and replace `YOUR_FORMSPREE_ID`
-7. Deploy: drag the folder to [netlify.com/drop](https://app.netlify.com/drop) or push to GitHub Pages
+```bash
+# Clone
+git clone https://github.com/seang1121/ai-business-with-automated-agents.git
+cd ai-business-with-automated-agents
 
-See `BUSINESS-PLAN.txt` for the full setup checklist and detailed instructions.
+# Run (Windows)
+start.bat
 
----
+# Run (Mac/Linux)
+chmod +x start.sh && ./start.sh
+```
 
-## Design Principles
+The launcher creates a venv, installs dependencies, seeds demo data, and starts the server.
 
-- **Elderly & mobile-friendly:** min 20px text, 48x48px tap targets, no confusing animations
-- **Phone number is king:** visible in sticky header on every scroll position, every device
-- **High contrast:** Navy/Orange/White, WCAG AA throughout
-- **SEO built-in:** LocalBusiness JSON-LD, meta tags, semantic HTML, town name lists
-- **Agent-ready forms:** clean field names (`name`, `phone`, `email`, `service`, `address`) ready for webhook automation
+**Dashboard:** http://localhost:5000/dashboard/ (PIN: `123456`)
 
 ---
 
-## Use This Template For
+## Demo Mode vs Live Mode
 
-- Pressure washing
-- Landscaping / lawn care
-- HVAC / plumbing / electrical
-- House cleaning / maid service
-- Roofing / gutters
-- Auto detailing
-- Pool service
-- Any local service business
+| | Demo Mode | Live Mode |
+|---|---|---|
+| **API keys needed?** | No | Yes (Claude, Twilio) |
+| **AI responses** | Realistic mocks from templates | Real Claude API calls |
+| **SMS/Email** | Logged to console | Actually sent via Twilio |
+| **Dashboard** | Fully functional | Fully functional |
+| **Config** | `mode: "demo"` | `mode: "live"` |
 
-Just swap the service names, photos, and pricing — the structure works for any trade.
+Demo mode works out of the box. Switch to live mode by adding API keys to `.env` and setting `mode: "live"` in `business_config.yaml`.
 
 ---
 
-## Business Model Summary
+## Configure for Any Business
+
+Edit `business_config.yaml` — that's the only file you need to change.
+
+**Pressure Washing (default):**
+```yaml
+business:
+  name: "Example Pressure Washing Co."
+  type: "pressure_washing"
+  services:
+    - name: "Driveway Cleaning"
+      starting_price: 150
+```
+
+**Law Firm:**
+```yaml
+business:
+  name: "Smith & Associates Law"
+  type: "family_law"
+  services:
+    - name: "Divorce & Separation"
+      starting_price: 500
+      unit: "consultation"
+```
+
+**Dental Office:**
+```yaml
+business:
+  name: "Bright Smile Dental"
+  type: "dental"
+  services:
+    - name: "Teeth Cleaning"
+      starting_price: 150
+      unit: "per visit"
+```
+
+The agents automatically adapt their tone, terminology, and behavior based on the business type. No code changes required.
+
+---
+
+## Project Structure
+
+```
+ai-business-with-automated-agents/
+|
+|-- index.html                  # Phase 1: Business website (HTML/CSS/JS)
+|-- style.css                   # Mobile-first responsive styles
+|-- script.js                   # Mobile menu, smooth scroll
+|-- business_config.yaml        # THE SINGLE CONFIG FILE
+|-- requirements.txt            # Python dependencies
+|-- start.bat / start.sh        # One-command launchers
+|-- .env.example                # API key template
+|
+|-- backend/
+|   |-- app.py                  # Flask entry point + API routes
+|   |-- config.py               # Config loader + validator
+|   |-- database.py             # SQLite singleton wrapper
+|   |-- schema.sql              # Database tables
+|   |-- mode.py                 # Demo/Live mode logic
+|   |-- seed_demo.py            # Seeds realistic demo data
+|   |-- cli.py                  # Terminal dashboard alternative
+|   |
+|   |-- agents/                 # The six AI agents
+|   |   |-- base_agent.py       # Abstract base (draft-approve-send pattern)
+|   |   |-- leads_agent.py
+|   |   |-- scheduling_agent.py
+|   |   |-- reviews_agent.py
+|   |   |-- finance_agent.py
+|   |   |-- marketing_agent.py
+|   |   |-- estimating_agent.py
+|   |
+|   |-- services/               # External service wrappers
+|   |   |-- claude_service.py   # Claude API + demo mocks
+|   |   |-- twilio_service.py   # SMS + demo logging
+|   |   |-- notification.py     # Owner alert routing
+|   |
+|   |-- approval/               # Approval queue system
+|   |   |-- approval_manager.py # Approve/reject/edit drafts
+|   |   |-- sms_approval.py     # Twilio SMS reply handler
+|   |
+|   |-- dashboard/              # Owner web dashboard
+|   |   |-- routes.py           # Flask blueprint
+|   |   |-- templates/          # Jinja2 HTML templates
+|   |   |-- static/             # CSS + JS
+|   |
+|   |-- integrations/           # Third-party integrations
+|       |-- openclaw_integration.py  # OpenClaw AI assistant
+|
+|-- tests/                      # Test suite
+|-- project-docs/               # Architecture documentation
+```
+
+---
+
+## CLI Usage
+
+```bash
+python backend/cli.py status     # System overview
+python backend/cli.py drafts     # List pending drafts
+python backend/cli.py approve 1  # Approve draft #1
+python backend/cli.py reject 2   # Reject draft #2
+python backend/cli.py leads      # List all leads
+python backend/cli.py activity   # Recent activity log
+python backend/cli.py demo       # Seed demo data + show status
+```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/webhook/formspree` | Receive form submissions |
+| POST | `/api/webhook/twilio` | SMS approval replies |
+| GET | `/api/agents/status` | All agent statuses |
+| POST | `/api/drafts/{id}/approve` | Approve a draft |
+| POST | `/api/drafts/{id}/reject` | Reject a draft |
+| POST | `/api/jobs/{id}/complete` | Mark job complete |
+| POST | `/api/leads/{id}/book` | Book a lead |
+| POST | `/api/marketing/generate` | Trigger marketing agent |
+
+---
+
+## OpenClaw Integration
+
+[OpenClaw](https://openclaw.com) is an AI executive assistant that can operate a computer, browse the web, and manage tasks. This repo includes an integration that lets OpenClaw act as a conversational layer on top of the agent system:
+
+- **Approval Relay** — OpenClaw presents drafts conversationally and handles approvals via chat
+- **Proactive Monitoring** — Alerts you about stale leads and unapproved drafts
+- **Browser Testing** — Verifies your website works end-to-end
+- **Multi-Channel Dispatch** — Sends approved messages via Telegram, Discord, etc.
+
+Enable in `business_config.yaml`:
+```yaml
+integrations:
+  openclaw:
+    enabled: true
+    gateway_url: "ws://127.0.0.1:18789"
+```
+
+---
+
+## Tech Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Website | HTML + CSS + Vanilla JS (zero dependencies) |
+| Backend | Python + Flask |
+| Database | SQLite (zero setup) |
+| AI | Claude API (Anthropic) |
+| SMS | Twilio |
+| Dashboard | Flask + Jinja2 + CSS |
+| Config | YAML (with comments) |
+| AI Assistant | OpenClaw (optional) |
+
+---
+
+## Roadmap
 
 | Phase | Status | What It Unlocks |
 |-------|--------|----------------|
-| Phase 1 — Website | Complete | Online presence, inbound leads, local SEO, credibility |
-| Phase 2 — AI Agents | Planned | Faster response, consistent follow-up, less manual work per job |
-| Phase 3 — Growth Tools | Future | Scale operations without proportional headcount increase |
+| Phase 1 — Website | Complete | Online presence, inbound leads, local SEO |
+| Phase 2 — AI Agents | Complete | Automated follow-up, scheduling, invoicing, marketing |
+| Phase 3 — Growth | Planned | Online self-booking, seasonal outreach, referral tracking |
 
 ---
 

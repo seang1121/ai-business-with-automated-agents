@@ -1,0 +1,190 @@
+# =============================================================
+# AI Business with Automated Agents — Configuration
+# =============================================================
+# This is the ONLY file you need to edit to configure for YOUR business.
+# Change the values below, then run: python backend/app.py
+#
+# Works for ANY business type: pressure washing, law firm, dentist,
+# landscaping, auto detailing, restaurant, real estate — anything.
+# =============================================================
+
+# --- YOUR BUSINESS INFO ---
+business:
+  name: "Example Pressure Washing Co."
+  type: "pressure_washing"            # e.g. law_firm, dental, landscaping, restaurant, real_estate
+  owner_name: "John Smith"
+  phone: "(555) 000-0000"
+  email: "info@yourbusiness.com"
+  website: "https://yourbusiness.com"
+  tagline: "Professional pressure washing for homes and businesses"
+
+  # Where you operate (agents reference this for context)
+  service_area:
+    regions:
+      - "Nassau County, NY"
+      - "Suffolk County, NY"
+    towns:
+      - "Huntington"
+      - "Babylon"
+      - "Smithtown"
+      - "Massapequa"
+      - "Farmingdale"
+
+  # Your services (agents use these for estimates, follow-ups, invoices)
+  services:
+    - name: "Driveway & Walkway Cleaning"
+      category: "residential"
+      starting_price: 150
+      unit: "per job"
+      estimate_factors: ["square_footage", "stain_severity"]
+
+    - name: "House & Vinyl Siding Wash"
+      category: "residential"
+      starting_price: 300
+      unit: "per job"
+      estimate_factors: ["stories", "square_footage"]
+
+    - name: "Deck & Patio Cleaning"
+      category: "residential"
+      starting_price: 175
+      unit: "per job"
+      estimate_factors: ["square_footage", "material"]
+
+    - name: "Roof Soft Washing"
+      category: "residential"
+      starting_price: 350
+      unit: "per job"
+      estimate_factors: ["square_footage", "pitch"]
+
+    - name: "Commercial Exterior"
+      category: "commercial"
+      starting_price: null             # "Call for pricing"
+      unit: "quote"
+      estimate_factors: []
+
+  # Business hours (scheduling agent uses this)
+  hours:
+    monday:    { start: "07:00", end: "19:00" }
+    tuesday:   { start: "07:00", end: "19:00" }
+    wednesday: { start: "07:00", end: "19:00" }
+    thursday:  { start: "07:00", end: "19:00" }
+    friday:    { start: "07:00", end: "19:00" }
+    saturday:  { start: "08:00", end: "17:00" }
+    sunday: null                       # Closed
+
+  # How long each job slot lasts
+  slot_duration_minutes: 60
+
+  # Google review link (reviews agent includes this)
+  google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+
+# =============================================================
+# EXAMPLE: LAW FIRM CONFIG (uncomment and replace above to try)
+# =============================================================
+# business:
+#   name: "Smith & Associates Law"
+#   type: "family_law"
+#   owner_name: "Sarah Smith, Esq."
+#   phone: "(555) 000-0000"
+#   email: "info@smithlaw.com"
+#   website: "https://smithlaw.com"
+#   tagline: "Compassionate family law for Nassau County families"
+#
+#   service_area:
+#     regions: ["Nassau County, NY"]
+#     towns: ["Garden City", "Mineola", "Hempstead"]
+#
+#   services:
+#     - name: "Divorce & Separation"
+#       category: "family"
+#       starting_price: 500
+#       unit: "consultation"
+#       estimate_factors: ["complexity", "contested"]
+#     - name: "Child Custody"
+#       category: "family"
+#       starting_price: 500
+#       unit: "consultation"
+#       estimate_factors: ["complexity"]
+#     - name: "Estate Planning"
+#       category: "estate"
+#       starting_price: 750
+#       unit: "flat fee"
+#       estimate_factors: ["estate_size"]
+#
+#   hours:
+#     monday:    { start: "09:00", end: "17:00" }
+#     tuesday:   { start: "09:00", end: "17:00" }
+#     wednesday: { start: "09:00", end: "17:00" }
+#     thursday:  { start: "09:00", end: "17:00" }
+#     friday:    { start: "09:00", end: "17:00" }
+#     saturday:  null
+#     sunday:    null
+#
+#   slot_duration_minutes: 30
+#   google_review_link: "https://g.page/r/YOUR_REVIEW_LINK/review"
+
+
+# --- AGENT SETTINGS ---
+agents:
+  leads:
+    enabled: true
+    response_tone: "friendly and professional"
+    max_response_delay_minutes: 5
+
+  scheduling:
+    enabled: true
+    slots_to_suggest: 3
+    buffer_between_jobs_minutes: 30
+
+  reviews:
+    enabled: true
+    delay_after_completion_hours: 2
+    review_platform: "google"
+
+  finance:
+    enabled: true
+    invoice_prefix: "INV"
+    payment_methods:
+      - "Cash"
+      - "Venmo"
+      - "Check"
+      - "Credit Card"
+    tax_rate: 0.08625                  # NY sales tax — change for your state
+
+  marketing:
+    enabled: true
+    platforms: ["facebook", "instagram"]
+    hashtags: ["#localbusiness", "#beforeandafter"]
+
+  estimating:
+    enabled: true
+    size_multipliers:
+      small: 1.0
+      medium: 1.5
+      large: 2.2
+      xlarge: 3.0
+
+
+# --- MODE ---
+# "demo" = runs without API keys (mock responses, no real messages sent)
+# "live" = requires ANTHROPIC_API_KEY and TWILIO credentials in .env
+mode: "demo"
+
+
+# --- NOTIFICATIONS ---
+notifications:
+  method: "dashboard_only"            # "sms", "email", or "dashboard_only"
+  owner_phone: "+15550000000"
+  owner_email: "owner@yourbusiness.com"
+
+
+# --- INTEGRATIONS ---
+integrations:
+  openclaw:
+    enabled: false                     # Set true if you have OpenClaw running
+    gateway_url: "ws://127.0.0.1:18789"
+    features:
+      - approval_relay                 # OpenClaw presents drafts conversationally
+      - proactive_monitoring           # Alerts owner about stale leads
+      - browser_testing                # Verifies website is working

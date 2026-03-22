@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Leads{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Lead Pipeline ({{ leads|length }})</h2>
+
+  {% if leads %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Service</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lead in leads %}
+      <tr>
+        <td>{{ lead.id }}</td>
+        <td>{{ lead.name }}</td>
+        <td>{{ lead.service or 'N/A' }}</td>
+        <td>{{ lead.phone or 'N/A' }}</td>
+        <td>{{ lead.address or 'N/A' }}</td>
+        <td><span class="status-badge {{ lead.status }}">{{ lead.status }}</span></td>
+        <td>{{ lead.created_at }}</td>
+        <td>
+          {% if lead.status == 'new' or lead.status == 'contacted' %}
+          <form method="POST" action="{{ url_for('dashboard.book_lead', lead_id=lead.id) }}" style="display:inline">
+            <button type="submit" class="btn btn-sm btn-approve">Book</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty-state">No leads yet. Submit a form on the website or run: python backend/seed_demo.py</p>
+  {% endif %}
+</div>
+{% endblock %}

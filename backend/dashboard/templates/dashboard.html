@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-grid">
+
+  <!-- Stats cards -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.pending_drafts }}</div>
+      <div class="stat-label">Pending Drafts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.new_leads }}</div>
+      <div class="stat-label">New Leads</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.active_jobs }}</div>
+      <div class="stat-label">Active Jobs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.completed_jobs }}</div>
+      <div class="stat-label">Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.approved_drafts }}</div>
+      <div class="stat-label">Approved</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">{{ stats.total_leads }}</div>
+      <div class="stat-label">Total Leads</div>
+    </div>
+  </div>
+
+  <!-- Pending drafts (approval queue) -->
+  <section class="card">
+    <h2>Pending Approval ({{ pending|length }})</h2>
+    {% if pending %}
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Agent</th>
+          <th>Recipient</th>
+          <th>Preview</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for draft in pending %}
+        <tr>
+          <td>{{ draft.id }}</td>
+          <td><span class="agent-badge {{ draft.agent }}">{{ draft.agent }}</span></td>
+          <td>{{ draft.recipient_name or 'N/A' }}</td>
+          <td class="preview-cell">{{ draft.draft_text[:80] }}{% if draft.draft_text|length > 80 %}...{% endif %}</td>
+          <td>{{ draft.created_at }}</td>
+          <td class="actions-cell">
+            <a href="{{ url_for('dashboard.draft_detail', draft_id=draft.id) }}" class="btn btn-sm">View</a>
+            <form method="POST" action="{{ url_for('dashboard.approve_draft', draft_id=draft.id) }}" style="display:inline">
+              <button type="submit" class="btn btn-sm btn-approve">Approve</button>
+            </form>
+            <form method="POST" action="{{ url_for('dashboard.reject_draft', draft_id=draft.id) }}" style="display:inline">
+              <button type="submit" class="btn btn-sm btn-reject">Reject</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-state">No drafts pending approval. All clear!</p>
+    {% endif %}
+  </section>
+
+  <!-- Recent activity -->
+  <section class="card">
+    <h2>Recent Activity</h2>
+    {% if activity %}
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Agent</th>
+          <th>Action</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in activity %}
+        <tr>
+          <td>{{ log.created_at }}</td>
+          <td><span class="agent-badge {{ log.agent }}">{{ log.agent or 'system' }}</span></td>
+          <td>{{ log.action }}</td>
+          <td>{{ log.details }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-state">No activity yet. Submit a form or seed demo data.</p>
+    {% endif %}
+  </section>
+
+</div>
+{% endblock %}

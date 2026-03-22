@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Dashboard{% endblock %} — {{ config.business.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='dashboard.css') }}">
+</head>
+<body>
+  <nav class="topnav">
+    <div class="nav-brand">{{ config.business.name }} — Agent Dashboard</div>
+    <div class="nav-links">
+      <a href="{{ url_for('dashboard.dashboard_home') }}" class="{% if request.endpoint == 'dashboard.dashboard_home' %}active{% endif %}">Dashboard</a>
+      <a href="{{ url_for('dashboard.leads_view') }}" class="{% if request.endpoint == 'dashboard.leads_view' %}active{% endif %}">Leads</a>
+      <a href="{{ url_for('dashboard.logout') }}">Logout</a>
+    </div>
+  </nav>
+
+  {% if mode_banner is defined and mode_banner %}
+  <div class="mode-banner {% if config.is_demo %}demo{% else %}live{% endif %}">
+    {{ mode_banner }}
+  </div>
+  {% endif %}
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="flash">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>AI Business with Automated Agents — <a href="https://github.com/seang1121/ai-business-with-automated-agents" target="_blank">GitHub</a></p>
+  </footer>
+
+  <script src="{{ url_for('dashboard.static', filename='dashboard.js') }}"></script>
+</body>
+</html>

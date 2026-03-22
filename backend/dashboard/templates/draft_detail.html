@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Draft #{{ draft.id }}{% endblock %}
+
+{% block content %}
+<div class="detail-page">
+  <a href="{{ url_for('dashboard.dashboard_home') }}" class="back-link">&larr; Back to Dashboard</a>
+
+  <div class="card">
+    <div class="detail-header">
+      <h2>Draft #{{ draft.id }}</h2>
+      <span class="agent-badge {{ draft.agent }}">{{ draft.agent }}</span>
+      <span class="status-badge {{ draft.status }}">{{ draft.status }}</span>
+    </div>
+
+    <div class="detail-meta">
+      <p><strong>Recipient:</strong> {{ draft.recipient_name or 'N/A' }}</p>
+      <p><strong>Phone:</strong> {{ draft.recipient_phone or 'N/A' }}</p>
+      <p><strong>Email:</strong> {{ draft.recipient_email or 'N/A' }}</p>
+      <p><strong>Created:</strong> {{ draft.created_at }}</p>
+      {% if draft.approved_at %}
+      <p><strong>Approved:</strong> {{ draft.approved_at }}</p>
+      {% endif %}
+    </div>
+
+    <div class="draft-content">
+      <h3>Draft Text</h3>
+      <div class="draft-text">{{ draft.draft_text }}</div>
+    </div>
+
+    {% if draft.owner_edits %}
+    <div class="draft-content">
+      <h3>Owner Edits</h3>
+      <div class="draft-text edited">{{ draft.owner_edits }}</div>
+    </div>
+    {% endif %}
+
+    {% if draft.status == 'pending' %}
+    <div class="detail-actions">
+      <form method="POST" action="{{ url_for('dashboard.approve_draft', draft_id=draft.id) }}">
+        <h3>Edit & Approve</h3>
+        <textarea name="edited_text" rows="6" placeholder="Optionally edit the text before approving...">{{ draft.draft_text }}</textarea>
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-approve">Approve</button>
+        </div>
+      </form>
+      <form method="POST" action="{{ url_for('dashboard.reject_draft', draft_id=draft.id) }}" style="margin-top: 12px;">
+        <button type="submit" class="btn btn-reject">Reject</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
