@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nonna's Kitchen | Authentic Italian Cuisine & Catering</title>
+  <meta name="description" content="Nonna's Kitchen — Authentic Italian cuisine and catering in Westchester County. Private events, weddings, corporate lunches, and cooking classes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --burgundy: #7c2d12;
+      --cream: #fef3c7;
+      --charcoal: #1c1917;
+      --gold: #d97706;
+      --white: #ffffff;
+      --burgundy-light: #9a3412;
+      --cream-dark: #fde68a;
+      --shadow: 0 2px 12px rgba(28, 25, 23, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+
+    a { color: var(--burgundy); text-decoration: none; transition: color 0.2s; }
+    a:hover, a:focus { color: var(--gold); }
+
+    img { max-width: 100%; height: auto; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* Back to Showcase */
+    .back-bar {
+      background: var(--charcoal);
+      padding: 8px 20px;
+      text-align: left;
+    }
+    .back-bar a {
+      color: var(--cream);
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+    }
+    .back-bar a:hover { color: var(--gold); }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--burgundy);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 0 20px;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .header-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--cream);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .header-brand span { color: var(--gold); }
+    .header-phone {
+      color: var(--cream);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .header-phone a { color: var(--cream); }
+    .header-phone a:hover { color: var(--gold); }
+
+    nav {
+      background: var(--charcoal);
+      padding: 0 20px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--cream);
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover, nav a:focus {
+      color: var(--gold);
+      background: rgba(255,255,255,0.05);
+      border-bottom-color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--burgundy) 0%, #5c1a0a 50%, var(--charcoal) 100%);
+      color: var(--cream);
+      text-align: center;
+      padding: 80px 20px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 30% 80%, rgba(217,119,6,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 20%, rgba(254,243,199,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--charcoal);
+      padding: 14px 36px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover {
+      background: var(--cream);
+      color: var(--burgundy);
+      transform: translateY(-1px);
+    }
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 20px;
+    }
+
+    /* Section Styles */
+    section { padding: 60px 20px; }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--burgundy);
+      margin-bottom: 8px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--gold);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+
+    /* Trust Badges */
+    .trust-section { background: var(--white); padding: 40px 20px; }
+    .trust-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+    .trust-badge {
+      padding: 20px 12px;
+    }
+    .trust-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+    .trust-badge h4 {
+      font-size: 1rem;
+      color: var(--burgundy);
+      margin-bottom: 4px;
+    }
+    .trust-badge p {
+      font-size: 0.85rem;
+      color: #57534e;
+      line-height: 1.4;
+    }
+
+    /* Services / Menu */
+    .services-section { background: var(--cream); }
+    .services-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border-top: 3px solid var(--gold);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(28,25,23,0.15);
+    }
+    .service-card h3 {
+      color: var(--burgundy);
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+    .service-price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 0.92rem;
+      color: #44403c;
+      line-height: 1.5;
+    }
+
+    /* About */
+    .about-section { background: var(--white); }
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .about-portrait {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burgundy), var(--gold));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--cream);
+      box-shadow: 0 4px 16px rgba(124,45,18,0.25);
+    }
+    .about-text h3 {
+      font-size: 1.4rem;
+      color: var(--burgundy);
+      margin-bottom: 4px;
+    }
+    .about-text .about-role {
+      color: var(--gold);
+      font-style: italic;
+      font-family: 'Playfair Display', Georgia, serif;
+      margin-bottom: 14px;
+    }
+    .about-text p {
+      color: #44403c;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 640px) {
+      .about-content { grid-template-columns: auto 1fr; }
+    }
+
+    /* Testimonials */
+    .testimonials-section { background: var(--cream); }
+    .testimonials-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.5rem;
+      color: var(--gold);
+      opacity: 0.35;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      line-height: 1;
+    }
+    .testimonial-card p {
+      font-size: 0.93rem;
+      color: #44403c;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      padding-top: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--burgundy);
+      font-size: 0.9rem;
+    }
+    .testimonial-detail {
+      font-size: 0.8rem;
+      color: #78716c;
+    }
+    .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 6px; }
+
+    /* Contact / Reservation */
+    .contact-section { background: var(--white); }
+    .contact-layout {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    @media (min-width: 700px) {
+      .contact-layout { grid-template-columns: 1fr 1fr; }
+    }
+    .contact-info h3 {
+      color: var(--burgundy);
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .contact-info p {
+      font-size: 0.93rem;
+      color: #44403c;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .contact-info strong { color: var(--charcoal); }
+    .contact-detail {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .contact-detail-icon { flex-shrink: 0; width: 20px; color: var(--gold); font-weight: 700; }
+
+    .reservation-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+      margin-top: 14px;
+    }
+    .reservation-form label:first-child { margin-top: 0; }
+    .reservation-form input,
+    .reservation-form select,
+    .reservation-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d6d3d1;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-family: 'Lato', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      transition: border-color 0.2s;
+    }
+    .reservation-form input:focus,
+    .reservation-form select:focus,
+    .reservation-form textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(217,119,6,0.15);
+    }
+    .reservation-form textarea { resize: vertical; min-height: 80px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btn-submit {
+      margin-top: 20px;
+      background: var(--burgundy);
+      color: var(--cream);
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--burgundy-light); }
+    .btn-submit:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+    /* Service Area */
+    .area-section { background: var(--cream); padding: 50px 20px; }
+    .area-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .area-towns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .area-tag {
+      background: var(--white);
+      border: 1px solid #e7e5e4;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--charcoal);
+      color: #a8a29e;
+      padding: 40px 20px 24px;
+    }
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    footer h4 {
+      color: var(--cream);
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+    }
+    footer a { color: #a8a29e; }
+    footer a:hover { color: var(--gold); }
+    footer p, footer li { font-size: 0.88rem; line-height: 1.7; }
+    footer ul { list-style: none; }
+    footer li { margin-bottom: 4px; }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #292524;
+      font-size: 0.82rem;
+      color: #78716c;
+    }
+
+    /* Confirmation Toast */
+    .toast {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--burgundy);
+      color: var(--cream);
+      padding: 16px 32px;
+      border-radius: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      font-size: 1rem;
+      z-index: 200;
+      animation: fadeInUp 0.3s ease;
+    }
+    .toast.show { display: block; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translate(-50%, 10px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back to Showcase -->
+  <div class="back-bar">
+    <a href="../../index.html" aria-label="Back to showcase">&larr; Back to Showcase</a>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">Nonna's <span>Kitchen</span></div>
+      <div class="header-phone">
+        <a href="tel:5550000000" aria-label="Call us">(555) 000-0000</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#services">Catering</a>
+      <a href="#about">Our Story</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Reservations</a>
+      <a href="#area">Service Area</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-divider"></div>
+      <h1>Authentic Italian Cuisine and <em>Catering</em> for Every Occasion</h1>
+      <p>From intimate dinner parties to grand wedding receptions, Nonna's Kitchen brings the warmth of a real Italian kitchen to your table. Every dish made from scratch, every event crafted with love.</p>
+      <a href="#contact" class="hero-cta">Book Your Event</a>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="trust-section" aria-label="Our values">
+    <div class="trust-grid">
+      <div class="trust-badge">
+        <span class="trust-icon" aria-hidden="true">&#127858;</span>
+        <h4>Family Recipes</h4>
+        <p>Three generations of handwritten recipes from the hills of Emilia-Romagna</p>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon" aria-hidden="true">&#127807;</span>
+        <h4>Locally Sourced</h4>
+        <p>Fresh ingredients from Hudson Valley farms and local purveyors</p>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon" aria-hidden="true">&#127942;</span>
+        <h4>Award-Winning Chef</h4>
+        <p>Westchester Magazine "Best Italian" three years running</p>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon" aria-hidden="true">&#127880;</span>
+        <h4>Catering Specialist</h4>
+        <p>Over 500 events catered with a 99% satisfaction rate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / Menu -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <h2 class="section-title">Catering &amp; Services</h2>
+      <p class="section-subtitle">Let us bring the feast to you</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Private Event Catering</h3>
+          <div class="service-price">$35 / person &middot; min 20 guests</div>
+          <p>A fully customized multi-course Italian menu for your milestone celebration. Includes setup, service staff, and cleanup. Choose from our seasonal menus or work with Chef Marco on something bespoke.</p>
+        </div>
+        <div class="service-card">
+          <h3>Corporate Lunch Catering</h3>
+          <div class="service-price">$18 / person &middot; min 10 guests</div>
+          <p>Impress your team or clients with fresh-made panini, hearty salads, antipasto boards, and house-baked focaccia. Delivered hot and ready. Vegetarian and gluten-free options available.</p>
+        </div>
+        <div class="service-card">
+          <h3>Wedding Catering</h3>
+          <div class="service-price">$75 / person</div>
+          <p>Your dream Italian wedding feast — from a sunset aperitivo hour with prosecco and bruschetta to a five-course seated dinner. We handle everything so you can focus on the dance floor.</p>
+        </div>
+        <div class="service-card">
+          <h3>Party Platters</h3>
+          <div class="service-price">$45 / tray &middot; feeds 8&ndash;10</div>
+          <p>Perfect for game days, family get-togethers, or a weeknight when you just don't feel like cooking. Choose from eggplant parmigiana, baked ziti, chicken marsala, and more.</p>
+        </div>
+        <div class="service-card">
+          <h3>Private Dining Room</h3>
+          <div class="service-price">$500 minimum</div>
+          <p>Our candlelit private room seats up to 24 guests. Ideal for birthdays, anniversaries, rehearsal dinners, or business dinners. Includes a dedicated server and a curated prix-fixe menu.</p>
+        </div>
+        <div class="service-card">
+          <h3>Cooking Classes</h3>
+          <div class="service-price">$85 / person</div>
+          <p>Roll up your sleeves and learn to make fresh pasta, risotto, or tiramisu with Chef Marco. Classes run Saturday mornings — bring wine, bring friends. Perfect for date nights or team outings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2 class="section-title">Our Story</h2>
+      <p class="section-subtitle">A kitchen built on love and tradition</p>
+      <div class="about-content">
+        <div class="about-portrait" aria-hidden="true">MR</div>
+        <div class="about-text">
+          <h3>Chef Marco Russo</h3>
+          <p class="about-role">Owner &amp; Executive Chef</p>
+          <p>Marco is a third-generation Italian cook who grew up elbow-deep in flour at his grandmother Rosa's kitchen table in a small town outside Bologna. He spent his twenties training under master chefs across Emilia-Romagna, learning the art of sfoglia, slow-braised rag&ugrave;, and the kind of hospitality that makes every guest feel like family.</p>
+          <p>In 2012, Marco opened Nonna's Kitchen in the heart of Westchester County to honor his grandmother and her belief that the best meals are the ones you share. Every dish on our menu traces back to a handwritten recipe card, stained with olive oil and love. Whether we're serving a Tuesday night dinner for two or catering a 200-guest wedding, the philosophy is the same: simple ingredients, proper technique, and generosity at the table.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Guests Say</h2>
+      <p class="section-subtitle">From our table to yours</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>We hired Nonna's Kitchen for our daughter's wedding and it was the single best decision we made. The osso buco had people literally getting out of their seats to ask what they were eating. Marco and his team were flawless from the tasting to the last plate cleared. Truly unforgettable.</p>
+          <div class="testimonial-author">Linda &amp; Tom Ferraro</div>
+          <div class="testimonial-detail">Wedding Reception, 180 guests &middot; Tarrytown</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>I order the corporate lunch platters at least twice a month for our office. The fresh mozzarella panini are dangerous — people hover near the conference room twenty minutes early. Everything arrives hot, beautifully presented, and on time. Our clients are always impressed.</p>
+          <div class="testimonial-author">Priya Kapoor</div>
+          <div class="testimonial-detail">Corporate Lunch Client &middot; White Plains</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>My husband and I took the Saturday pasta-making class for our anniversary and it was the most fun we've had in years. Marco is hilarious and patient, and we walked out with skills we actually use at home now. The fresh tagliatelle with rag&ugrave; we made? Better than anything I've had in a restaurant.</p>
+          <div class="testimonial-author">Danielle Moretti</div>
+          <div class="testimonial-detail">Cooking Class &middot; Scarsdale</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Reservation Form -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Reserve Your Table or Event</h2>
+      <p class="section-subtitle">We'd love to hear from you</p>
+      <div class="contact-layout">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">&#9742;</span>
+            <div>
+              <strong>Phone</strong><br>
+              <a href="tel:5550000000">(555) 000-0000</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">&#9993;</span>
+            <div>
+              <strong>Email</strong><br>
+              <a href="mailto:info@nonnaskitchen.com">info@nonnaskitchen.com</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">&#9201;</span>
+            <div>
+              <strong>Hours</strong><br>
+              Tue&ndash;Thu: 5 PM &ndash; 10 PM<br>
+              Fri&ndash;Sat: 5 PM &ndash; 11 PM<br>
+              Sun: 4 PM &ndash; 9 PM<br>
+              Mon: Closed
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">&#9873;</span>
+            <div>
+              <strong>Address</strong><br>
+              142 Main Street<br>
+              Tarrytown, NY 10591
+            </div>
+          </div>
+        </div>
+
+        <form class="reservation-form" id="reservationForm" novalidate>
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Maria Russo">
+
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 123-4567">
+            </div>
+            <div>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="maria@email.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="preferred_time">Preferred Date/Time</label>
+              <input type="text" id="preferred_time" name="preferred_time" placeholder="Sat, March 15 at 7 PM">
+            </div>
+            <div>
+              <label for="guest_count">Guest Count</label>
+              <input type="number" id="guest_count" name="guest_count" min="1" placeholder="12">
+            </div>
+          </div>
+
+          <label for="event_type">Event Type</label>
+          <select id="event_type" name="event_type">
+            <option value="">Select an option...</option>
+            <option value="dinner_reservation">Dinner Reservation</option>
+            <option value="private_event">Private Event Catering</option>
+            <option value="corporate_lunch">Corporate Lunch</option>
+            <option value="wedding">Wedding Catering</option>
+            <option value="party_platters">Party Platters</option>
+            <option value="private_dining">Private Dining Room</option>
+            <option value="cooking_class">Cooking Class</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label for="notes">Special Requests or Notes</label>
+          <textarea id="notes" name="notes" placeholder="Dietary restrictions, occasion details, questions..."></textarea>
+
+          <button type="submit" class="btn-submit">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="area-section" id="area">
+    <div class="container">
+      <div class="area-content">
+        <h2 class="section-title">We Serve Westchester County</h2>
+        <p class="section-subtitle">Catering delivery &amp; pickup throughout the region</p>
+        <div class="area-towns">
+          <span class="area-tag">Tarrytown</span>
+          <span class="area-tag">White Plains</span>
+          <span class="area-tag">Scarsdale</span>
+          <span class="area-tag">Yonkers</span>
+          <span class="area-tag">New Rochelle</span>
+          <span class="area-tag">Bronxville</span>
+          <span class="area-tag">Larchmont</span>
+          <span class="area-tag">Mamaroneck</span>
+          <span class="area-tag">Rye</span>
+          <span class="area-tag">Dobbs Ferry</span>
+          <span class="area-tag">Irvington</span>
+          <span class="area-tag">Hastings-on-Hudson</span>
+          <span class="area-tag">Pleasantville</span>
+          <span class="area-tag">Ossining</span>
+          <span class="area-tag">Mount Kisco</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4>Nonna's Kitchen</h4>
+        <p>142 Main Street<br>Tarrytown, NY 10591</p>
+        <p style="margin-top:8px;"><a href="tel:5550000000">(555) 000-0000</a><br>
+        <a href="mailto:info@nonnaskitchen.com">info@nonnaskitchen.com</a></p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Catering &amp; Services</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Reservations</a></li>
+          <li><a href="#area">Service Area</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Tue&ndash;Thu: 5 PM &ndash; 10 PM<br>
+        Fri&ndash;Sat: 5 PM &ndash; 11 PM<br>
+        Sun: 4 PM &ndash; 9 PM<br>
+        Mon: Closed</p>
+        <p style="margin-top:12px;font-style:italic;">Catering available 7 days a week</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Nonna's Kitchen. All rights reserved. | <a href="../../index.html">AI Business Demos</a>
+    </div>
+  </footer>
+
+  <!-- Confirmation Toast -->
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    Your request has been sent! We'll be in touch within 24 hours.
+  </div>
+
+  <script>
+    // Form submission handler
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var name = form.querySelector('#name').value.trim();
+      var phone = form.querySelector('#phone').value.trim();
+      var email = form.querySelector('#email').value.trim();
+
+      if (!name || !phone || !email) {
+        alert('Please fill in your name, phone, and email.');
+        return;
+      }
+
+      // Show toast
+      var toast = document.getElementById('toast');
+      toast.classList.add('show');
+      form.reset();
+
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 4000);
+    });
+
+    // Smooth scroll for nav links (fallback for older browsers)
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          var headerHeight = document.querySelector('.site-header').offsetHeight;
+          var navHeight = document.querySelector('nav').offsetHeight;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - navHeight;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

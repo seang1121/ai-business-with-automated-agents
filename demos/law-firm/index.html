@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smith & Associates Family Law | Nassau County Family Attorneys</title>
+    <meta name="description" content="Compassionate family law representation in Nassau County. Divorce, custody, support, prenuptial agreements, estate planning, and adoption services.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --navy: #1a1f3d;
+            --gold: #c5a55a;
+            --gold-hover: #b8953f;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-dark: #2a2a2a;
+            --text-muted: #5a5a5a;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; line-height: 1.25; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* Back to Showcase */
+        .back-bar { background: var(--navy); padding: 8px 20px; text-align: left; }
+        .back-bar a { color: var(--gold); font-size: 0.85rem; transition: color 0.2s; }
+        .back-bar a:hover { color: var(--white); }
+
+        /* Sticky Header */
+        .header { position: sticky; top: 0; z-index: 1000; background: var(--white); border-bottom: 3px solid var(--gold); padding: 0 20px; }
+        .header-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 70px; flex-wrap: wrap; gap: 8px; }
+        .firm-name { font-family: Georgia, serif; font-size: 1.35rem; color: var(--navy); font-weight: 700; }
+        .firm-name span { color: var(--gold); }
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .header-phone { font-weight: 700; color: var(--navy); font-size: 1.05rem; letter-spacing: 0.3px; }
+        .header-cta { background: var(--gold); color: var(--white); padding: 10px 22px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; }
+        .header-cta:hover { background: var(--gold-hover); }
+        nav { background: var(--navy); }
+        nav ul { max-width: 1100px; margin: 0 auto; display: flex; list-style: none; flex-wrap: wrap; justify-content: center; }
+        nav a { display: block; padding: 12px 18px; color: var(--white); font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
+        nav a:hover { background: rgba(197, 165, 90, 0.25); }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, #2a3158 100%); color: var(--white); padding: 80px 20px; text-align: center; position: relative; }
+        .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+        .hero h1 { font-size: 2.4rem; margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero h1 em { font-style: normal; color: var(--gold); }
+        .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 30px; opacity: 0.92; }
+        .hero-cta { display: inline-block; background: var(--gold); color: var(--white); padding: 15px 40px; border-radius: 4px; font-weight: 700; font-size: 1.05rem; transition: background 0.2s; }
+        .hero-cta:hover { background: var(--gold-hover); }
+        .hero-sub { margin-top: 14px; font-size: 0.9rem; opacity: 0.7; }
+
+        /* Sections */
+        .section { padding: 70px 20px; }
+        .section-gray { background: var(--light-gray); }
+        .section-title { text-align: center; font-size: 2rem; color: var(--navy); margin-bottom: 12px; }
+        .section-subtitle { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 45px; font-size: 1.05rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* Trust Badges */
+        .badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto 0; }
+        .badge { text-align: center; padding: 25px 15px; background: var(--white); border-radius: 6px; border: 1px solid #e0ddd5; }
+        .badge-icon { font-size: 2rem; margin-bottom: 8px; }
+        .badge h4 { color: var(--navy); font-size: 1rem; margin-bottom: 4px; }
+        .badge p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 25px; }
+        .service-card { background: var(--white); border-radius: 6px; padding: 35px 28px; border: 1px solid #e0ddd5; transition: box-shadow 0.25s, border-color 0.25s; }
+        .service-card:hover { box-shadow: 0 8px 28px rgba(26, 31, 61, 0.1); border-color: var(--gold); }
+        .service-card h3 { color: var(--navy); font-size: 1.2rem; margin-bottom: 10px; }
+        .service-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; }
+        .service-price { display: inline-block; background: var(--navy); color: var(--gold); padding: 6px 16px; border-radius: 3px; font-weight: 700; font-size: 0.9rem; }
+
+        /* About */
+        .about-content { display: grid; grid-template-columns: 1fr 1.4fr; gap: 45px; align-items: start; }
+        .about-photo { background: linear-gradient(135deg, var(--navy), #2a3158); border-radius: 8px; height: 380px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-family: Georgia, serif; font-size: 4rem; font-weight: 700; }
+        .about-text h3 { color: var(--navy); font-size: 1.5rem; margin-bottom: 6px; }
+        .about-text .title { color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 16px; display: block; }
+        .about-text p { margin-bottom: 14px; color: var(--text-muted); }
+        .about-credentials { list-style: none; margin-top: 18px; }
+        .about-credentials li { padding: 6px 0 6px 24px; position: relative; color: var(--text-dark); font-size: 0.95rem; }
+        .about-credentials li::before { content: '\2713'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .testimonial { background: var(--white); border-radius: 6px; padding: 30px 28px; border-left: 4px solid var(--gold); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .testimonial .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 2px; }
+        .testimonial blockquote { font-style: italic; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+        .testimonial cite { font-style: normal; font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+        .testimonial .case-type { display: block; color: var(--text-muted); font-size: 0.8rem; font-weight: 400; margin-top: 2px; }
+
+        /* Contact Form */
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; }
+        .contact-info h3 { color: var(--navy); font-size: 1.3rem; margin-bottom: 16px; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 20px; }
+        .contact-detail { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+        .contact-detail strong { color: var(--navy); min-width: 55px; }
+        .contact-detail span { color: var(--text-muted); }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--navy); font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 11px 14px; border: 1px solid #ccc; border-radius: 4px;
+            font-size: 0.95rem; font-family: inherit; transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(197, 165, 90, 0.2); }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .btn-submit { background: var(--gold); color: var(--white); border: none; padding: 14px 40px; font-size: 1rem; font-weight: 700; border-radius: 4px; cursor: pointer; transition: background 0.2s; width: 100%; }
+        .btn-submit:hover { background: var(--gold-hover); }
+        .form-disclaimer { font-size: 0.78rem; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+
+        /* Service Area */
+        .area-towns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+        .area-towns span { background: var(--white); border: 1px solid #ddd; padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; color: var(--navy); }
+
+        /* Footer */
+        footer { background: var(--navy); color: rgba(255,255,255,0.75); padding: 50px 20px 25px; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 35px; }
+        .footer-col h4 { color: var(--gold); font-family: Georgia, serif; margin-bottom: 14px; font-size: 1.05rem; }
+        .footer-col p, .footer-col a { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.7); }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-col ul { list-style: none; }
+        .footer-col li a { display: block; }
+        .footer-bottom { max-width: 1100px; margin: 35px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.15); text-align: center; font-size: 0.82rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.7rem; }
+            .hero { padding: 55px 20px; }
+            .about-content { grid-template-columns: 1fr; }
+            .about-photo { height: 220px; font-size: 3rem; }
+            .contact-wrap { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .header-inner { justify-content: center; text-align: center; }
+            .header-cta { display: none; }
+            nav a { padding: 10px 12px; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Back to Showcase -->
+<div class="back-bar">
+    <a href="../../index.html">&larr; Back to Showcase</a>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <div class="firm-name">Smith <span>&</span> Associates Family Law</div>
+        <div class="header-right">
+            <a class="header-phone" href="tel:5550000000">(555) 000-0000</a>
+            <a class="header-cta" href="#contact">Free Consultation</a>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#services">Practice Areas</a></li>
+            <li><a href="#about">Our Attorney</a></li>
+            <li><a href="#testimonials">Client Stories</a></li>
+            <li><a href="#area">Service Area</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>Compassionate Family Law for <em>Nassau County</em> Families</h1>
+    <p>When your family's future is at stake, you deserve an attorney who listens, fights, and delivers results. We guide you through every step with care and clarity.</p>
+    <a class="hero-cta" href="#contact">Schedule Your Free Consultation</a>
+    <p class="hero-sub">No obligation. Completely confidential.</p>
+</section>
+
+<!-- Trust Badges -->
+<section class="section section-gray">
+    <div class="container">
+        <div class="badges">
+            <div class="badge">
+                <div class="badge-icon">&#9878;</div>
+                <h4>Board Certified</h4>
+                <p>Family Law Specialist</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">&#9733;</div>
+                <h4>20+ Years Experience</h4>
+                <p>Proven trial & negotiation record</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">&#9742;</div>
+                <h4>Free Consultation</h4>
+                <p>No-pressure initial meeting</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">&#128274;</div>
+                <h4>100% Confidential</h4>
+                <p>Attorney-client privilege protected</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="section" id="services">
+    <div class="container">
+        <h2 class="section-title">Our Practice Areas</h2>
+        <p class="section-subtitle">We focus exclusively on family law so you receive depth of experience where it matters most.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Divorce & Separation</h3>
+                <p>Contested and uncontested divorce representation. We protect your assets, parental rights, and future through skilled negotiation or litigation when necessary.</p>
+                <span class="service-price">$500 Consultation</span>
+            </div>
+            <div class="service-card">
+                <h3>Child Custody</h3>
+                <p>Legal and physical custody arrangements that prioritize your child's well-being. We build compelling cases for parenting plans that truly serve families.</p>
+                <span class="service-price">$500 Consultation</span>
+            </div>
+            <div class="service-card">
+                <h3>Child Support Modifications</h3>
+                <p>Life changes. Support orders should reflect your current circumstances. We handle initial petitions, modifications, and enforcement actions.</p>
+                <span class="service-price">$400 Consultation</span>
+            </div>
+            <div class="service-card">
+                <h3>Prenuptial Agreements</h3>
+                <p>Start your marriage on solid ground. We draft clear, enforceable prenuptial and postnuptial agreements that protect both parties fairly.</p>
+                <span class="service-price">$1,500 Flat Fee</span>
+            </div>
+            <div class="service-card">
+                <h3>Estate Planning</h3>
+                <p>Wills, trusts, powers of attorney, and healthcare directives. Ensure your family is cared for according to your wishes, no matter what happens.</p>
+                <span class="service-price">$750 Flat Fee</span>
+            </div>
+            <div class="service-card">
+                <h3>Adoption</h3>
+                <p>Growing your family is a beautiful journey. We handle stepparent, private, and agency adoptions with the attention and urgency every family deserves.</p>
+                <span class="service-price">$3,000 Flat Fee</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="section section-gray" id="about">
+    <div class="container">
+        <h2 class="section-title">Meet Your Attorney</h2>
+        <p class="section-subtitle">Dedicated advocacy rooted in experience and empathy.</p>
+        <div class="about-content">
+            <div class="about-photo">SS</div>
+            <div class="about-text">
+                <h3>Sarah Smith, Esq.</h3>
+                <span class="title">Founding Partner & Lead Attorney</span>
+                <p>Sarah earned her Juris Doctor from Harvard Law School, where she focused on family and juvenile law. Before founding Smith & Associates, she spent three years as a clerk in Nassau County Family Court, giving her an insider's perspective on how judges evaluate cases and make decisions.</p>
+                <p>That courtroom experience shapes every strategy she builds today. Sarah understands that behind every filing is a real family navigating one of the most difficult chapters of their life. She combines rigorous legal preparation with genuine compassion to deliver outcomes her clients can build a future on.</p>
+                <ul class="about-credentials">
+                    <li>Harvard Law School, J.D.</li>
+                    <li>Board Certified Family Law Specialist</li>
+                    <li>Former Nassau County Family Court Clerk</li>
+                    <li>New York State Bar Association, Family Law Section</li>
+                    <li>Nassau County Bar Association, Executive Committee</li>
+                    <li>500+ families represented since 2005</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Real families. Real results. Names changed to protect privacy.</p>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>"Sarah handled my divorce with a level of care I didn't think was possible from an attorney. She explained every step, returned every call, and fought for a custody arrangement that truly works for my children. I walked away feeling like I had my life back."</blockquote>
+                <cite>Maria R.
+                    <span class="case-type">Divorce & Child Custody</span>
+                </cite>
+            </div>
+            <div class="testimonial">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>"After my income changed dramatically, I needed a child support modification fast. Smith & Associates moved quickly, kept me informed throughout the process, and secured a fair adjustment within weeks. Professional, responsive, and genuinely kind."</blockquote>
+                <cite>David L.
+                    <span class="case-type">Child Support Modification</span>
+                </cite>
+            </div>
+            <div class="testimonial">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <blockquote>"We hired Sarah for our stepparent adoption and she made what felt like an overwhelming process completely manageable. She anticipated every question before we even had to ask. The day the judge finalized our adoption, Sarah was right there celebrating with us."</blockquote>
+                <cite>The Thompson Family
+                    <span class="case-type">Stepparent Adoption</span>
+                </cite>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Area -->
+<section class="section section-gray" id="area">
+    <div class="container">
+        <h2 class="section-title">Serving Nassau County Families</h2>
+        <p class="section-subtitle">Our office is centrally located to serve communities throughout Nassau County and the surrounding area.</p>
+        <div class="area-towns">
+            <span>Garden City</span>
+            <span>Mineola</span>
+            <span>Hempstead</span>
+            <span>Freeport</span>
+            <span>Long Beach</span>
+            <span>Rockville Centre</span>
+            <span>Valley Stream</span>
+            <span>Levittown</span>
+            <span>Hicksville</span>
+            <span>Massapequa</span>
+            <span>Oceanside</span>
+            <span>Syosset</span>
+            <span>Great Neck</span>
+            <span>Manhasset</span>
+            <span>Glen Cove</span>
+            <span>Westbury</span>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+    <div class="container">
+        <h2 class="section-title">Schedule Your Consultation</h2>
+        <p class="section-subtitle">Take the first step. Fill out the form below and we will contact you within one business day.</p>
+        <div class="contact-wrap">
+            <div class="contact-info">
+                <h3>Smith & Associates Family Law</h3>
+                <p>Experienced, compassionate legal counsel for Nassau County families. Your first consultation is free and completely confidential.</p>
+                <div class="contact-detail"><strong>Phone:</strong> <span>(555) 000-0000</span></div>
+                <div class="contact-detail"><strong>Email:</strong> <span>info@smithfamilylaw.com</span></div>
+                <div class="contact-detail"><strong>Office:</strong> <span>123 Courthouse Lane, Suite 200<br>Garden City, NY 11530</span></div>
+                <div class="contact-detail"><strong>Hours:</strong> <span>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: By appointment<br>Sun: Closed</span></div>
+            </div>
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="you@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="call_time">Best Time to Call</label>
+                        <select id="call_time" name="call_time">
+                            <option value="">Select a time</option>
+                            <option value="morning">Morning (9 AM - 12 PM)</option>
+                            <option value="afternoon">Afternoon (12 PM - 3 PM)</option>
+                            <option value="late_afternoon">Late Afternoon (3 PM - 6 PM)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="service">What Do You Need Help With? *</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a practice area</option>
+                        <option value="divorce">Divorce & Separation</option>
+                        <option value="custody">Child Custody</option>
+                        <option value="support">Child Support Modifications</option>
+                        <option value="prenup">Prenuptial Agreements</option>
+                        <option value="estate">Estate Planning</option>
+                        <option value="adoption">Adoption</option>
+                        <option value="other">Other / Not Sure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="City or ZIP code">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Tell Us About Your Situation</label>
+                    <textarea id="notes" name="notes" placeholder="Briefly describe your situation so we can prepare for your consultation..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Request Free Consultation</button>
+                <p class="form-disclaimer">By submitting this form, you agree to be contacted by Smith & Associates Family Law. All information is protected by attorney-client confidentiality. This form does not establish an attorney-client relationship.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Smith & Associates</h4>
+            <p>Compassionate, experienced family law representation in Nassau County. Protecting families since 2005.</p>
+            <p style="margin-top:12px;">(555) 000-0000<br>info@smithfamilylaw.com</p>
+        </div>
+        <div class="footer-col">
+            <h4>Practice Areas</h4>
+            <ul>
+                <li><a href="#services">Divorce & Separation</a></li>
+                <li><a href="#services">Child Custody</a></li>
+                <li><a href="#services">Child Support</a></li>
+                <li><a href="#services">Prenuptial Agreements</a></li>
+                <li><a href="#services">Estate Planning</a></li>
+                <li><a href="#services">Adoption</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#about">Meet Sarah Smith</a></li>
+                <li><a href="#testimonials">Client Stories</a></li>
+                <li><a href="#area">Service Area</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Office Location</h4>
+            <p>123 Courthouse Lane, Suite 200<br>Garden City, NY 11530</p>
+            <p style="margin-top:12px;">Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: By appointment<br>Sun: Closed</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Smith & Associates Family Law. All rights reserved. | This is a demo website.</p>
+    </div>
+</footer>
+
+<script>
+    function handleSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form));
+        const btn = form.querySelector('.btn-submit');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        setTimeout(function() {
+            btn.textContent = 'Consultation Requested!';
+            btn.style.background = '#2a7d4f';
+            form.reset();
+            setTimeout(function() {
+                btn.textContent = 'Request Free Consultation';
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 3000);
+        }, 1200);
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

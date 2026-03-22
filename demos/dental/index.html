@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bright Smile Dental | Gentle, Modern Dentistry</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #0d9488;
+      --dark-teal: #134e4a;
+      --white: #ffffff;
+      --mint: #f0fdfa;
+      --gray: #374151;
+      --light-gray: #f9fafb;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--gray); line-height: 1.6; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* Back to showcase */
+    .back-bar { background: var(--dark-teal); color: var(--white); text-align: center; padding: 8px 16px; font-size: 0.85rem; }
+    .back-bar a { color: var(--white); font-weight: 500; }
+    .back-bar a:hover { opacity: 0.85; }
+
+    /* Header */
+    .header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .logo { font-size: 1.35rem; font-weight: 700; color: var(--dark-teal); }
+    .logo span { color: var(--teal); }
+    .header-phone { font-weight: 600; color: var(--dark-teal); font-size: 1rem; white-space: nowrap; }
+    .header-phone svg { vertical-align: middle; margin-right: 4px; }
+    nav { width: 100%; display: flex; gap: 20px; margin-top: 4px; }
+    nav a { color: var(--gray); font-size: 0.9rem; font-weight: 500; }
+    nav a:hover { color: var(--teal); text-decoration: none; }
+    @media(min-width:768px) { nav { width: auto; margin-top: 0; } }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, var(--dark-teal) 0%, var(--teal) 100%); color: var(--white); padding: 80px 20px 70px; text-align: center; }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); max-width: 700px; margin: 0 auto 16px; line-height: 1.2; font-weight: 700; }
+    .hero p { font-size: 1.1rem; max-width: 560px; margin: 0 auto 32px; opacity: 0.92; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; transition: transform 0.15s, box-shadow 0.15s; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration: none; }
+    .btn-white { background: var(--white); color: var(--dark-teal); }
+    .btn-teal { background: var(--teal); color: var(--white); }
+
+    /* Sections */
+    .section { padding: 64px 20px; }
+    .section-title { text-align: center; font-size: 1.8rem; font-weight: 700; color: var(--dark-teal); margin-bottom: 8px; }
+    .section-sub { text-align: center; color: var(--gray); max-width: 560px; margin: 0 auto 40px; font-size: 1.05rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* Trust Badges */
+    .badges { background: var(--mint); padding: 40px 20px; }
+    .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .badge-item { padding: 20px; }
+    .badge-icon { font-size: 2rem; margin-bottom: 8px; }
+    .badge-label { font-weight: 600; color: var(--dark-teal); font-size: 1rem; }
+
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .service-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); transition: box-shadow 0.2s, transform 0.2s; }
+    .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .service-card h3 { color: var(--dark-teal); margin-bottom: 8px; font-size: 1.15rem; }
+    .service-card p { font-size: 0.95rem; margin-bottom: 12px; }
+    .service-price { font-weight: 700; color: var(--teal); font-size: 1.1rem; }
+
+    /* About */
+    .about-wrap { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+    @media(min-width:768px) { .about-wrap { grid-template-columns: 1fr 1.2fr; } }
+    .about-photo { background: linear-gradient(135deg, var(--teal), var(--dark-teal)); border-radius: var(--radius); height: 320px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 5rem; }
+    .about-text h2 { color: var(--dark-teal); font-size: 1.6rem; margin-bottom: 6px; }
+    .about-text .credential { color: var(--teal); font-weight: 600; margin-bottom: 16px; display: block; }
+    .about-text p { margin-bottom: 14px; font-size: 1rem; }
+    .about-stats { display: flex; gap: 32px; margin-top: 20px; }
+    .about-stat strong { display: block; font-size: 1.4rem; color: var(--dark-teal); }
+    .about-stat span { font-size: 0.85rem; color: var(--gray); }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .testimonial-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); }
+    .testimonial-card p { font-style: italic; margin-bottom: 16px; font-size: 0.95rem; line-height: 1.7; }
+    .testimonial-author { font-weight: 600; color: var(--dark-teal); }
+    .stars { color: #f59e0b; margin-bottom: 12px; letter-spacing: 2px; }
+
+    /* Contact */
+    .contact-wrap { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media(min-width:768px) { .contact-wrap { grid-template-columns: 1fr 1fr; } }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 0.9rem; color: var(--dark-teal); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+      font-size: 0.95rem; font-family: inherit; background: var(--white); color: var(--gray);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.12); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .contact-info h3 { color: var(--dark-teal); margin-bottom: 16px; font-size: 1.2rem; }
+    .contact-info p { margin-bottom: 12px; }
+    .contact-info strong { color: var(--dark-teal); }
+    .area-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-top: 8px; }
+    .area-list li::before { content: "\2713"; color: var(--teal); font-weight: 700; margin-right: 6px; }
+
+    /* Footer */
+    footer { background: var(--dark-teal); color: rgba(255,255,255,0.85); padding: 48px 20px 24px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto 32px; }
+    .footer-grid h4 { color: var(--white); margin-bottom: 12px; font-size: 1rem; }
+    .footer-grid a { color: rgba(255,255,255,0.8); display: block; margin-bottom: 6px; font-size: 0.9rem; }
+    .footer-grid a:hover { color: var(--white); }
+    .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px; font-size: 0.85rem; max-width: 1100px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Back to showcase -->
+  <div class="back-bar">
+    <a href="../../index.html">&larr; Back to AI Business Showcase</a>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">Bright<span>Smile</span> Dental</div>
+      <a href="tel:5550000000" class="header-phone">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (555) 000-0000
+      </a>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Gentle, Modern Dentistry for the Whole Family</h1>
+    <p>At Bright Smile Dental, we combine advanced technology with a warm, calming approach so every visit feels comfortable — even if it has been a while.</p>
+    <a href="#contact" class="btn btn-white">Book Your Visit</a>
+  </section>
+
+  <!-- Trust Badges -->
+  <div class="badges">
+    <div class="badges-grid">
+      <div class="badge-item">
+        <div class="badge-icon" aria-hidden="true">&#9733;</div>
+        <div class="badge-label">Board Certified</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon" aria-hidden="true">&#9829;</div>
+        <div class="badge-label">Gentle Approach</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon" aria-hidden="true">&#9881;</div>
+        <div class="badge-label">Modern Technology</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon" aria-hidden="true">&#10003;</div>
+        <div class="badge-label">Insurance Accepted</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="section" id="services" style="background: var(--light-gray);">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">From routine cleanings to full smile transformations, we provide comprehensive care with your comfort as our top priority.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Teeth Cleaning &amp; Exam</h3>
+          <p>Thorough professional cleaning paired with a comprehensive exam, digital X-rays, and personalized oral health plan.</p>
+          <div class="service-price">$150 / visit</div>
+        </div>
+        <div class="service-card">
+          <h3>Teeth Whitening</h3>
+          <p>Professional-grade whitening that lifts years of stains in a single session. Safe, fast, and dramatically brighter results.</p>
+          <div class="service-price">$350 / session</div>
+        </div>
+        <div class="service-card">
+          <h3>Dental Implants</h3>
+          <p>Permanent, natural-looking tooth replacements anchored securely into the jawbone. Restored confidence starts here.</p>
+          <div class="service-price">$3,000 / implant</div>
+        </div>
+        <div class="service-card">
+          <h3>Invisalign</h3>
+          <p>Straighten your teeth discreetly with clear, removable aligners. No metal brackets, no lifestyle disruption.</p>
+          <div class="service-price">$4,000 / full treatment</div>
+        </div>
+        <div class="service-card">
+          <h3>Root Canal</h3>
+          <p>Gentle, precise root canal therapy to save your natural tooth and eliminate pain. Modern techniques make this easier than ever.</p>
+          <div class="service-price">$800 / tooth</div>
+        </div>
+        <div class="service-card">
+          <h3>Emergency Dental Care</h3>
+          <p>Same-day appointments for urgent issues: broken teeth, severe pain, infections, or trauma. We are here when you need us.</p>
+          <div class="service-price">$200 / visit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-photo" aria-label="Photo of Dr. James Chen">
+          <svg width="120" height="120" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+        </div>
+        <div class="about-text">
+          <h2>Meet Dr. James Chen</h2>
+          <span class="credential">DDS, NYU College of Dentistry</span>
+          <p>Dr. Chen founded Bright Smile Dental with a simple belief: no one should dread going to the dentist. After graduating from NYU College of Dentistry and completing his residency at Mount Sinai, he spent over a decade perfecting techniques that minimize discomfort and maximize results.</p>
+          <p>He specializes in treating anxious patients and takes extra time to explain every procedure, answer questions, and ensure you feel in control throughout your visit. Whether it is your first cleaning in years or a complex restoration, Dr. Chen and our team will make sure you are at ease.</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <strong>15+</strong>
+              <span>Years Experience</span>
+            </div>
+            <div class="about-stat">
+              <strong>4,000+</strong>
+              <span>Happy Patients</span>
+            </div>
+            <div class="about-stat">
+              <strong>5.0</strong>
+              <span>Google Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials" style="background: var(--mint);">
+    <div class="container">
+      <h2 class="section-title">What Our Patients Say</h2>
+      <p class="section-sub">We take pride in creating a calm, welcoming environment where patients feel genuinely cared for.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"I had not been to a dentist in over five years because of anxiety. Dr. Chen was incredibly patient, explained everything before he did it, and I never once felt rushed or judged. I actually look forward to my next visit."</p>
+          <div class="testimonial-author">Maria S. &mdash; Park Slope, Brooklyn</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"My daughter used to cry before every dental appointment. After switching to Bright Smile, she walks in smiling. The staff is so warm and the office feels more like a spa than a clinic. Cannot recommend them enough."</p>
+          <div class="testimonial-author">David L. &mdash; Astoria, Queens</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>"I needed a root canal and was terrified. Dr. Chen talked me through every step and I barely felt a thing. The follow-up care was excellent too &mdash; they called the next day to check on me. That is the kind of care that earns loyalty."</p>
+          <div class="testimonial-author">Kevin T. &mdash; Williamsburg, Brooklyn</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Schedule Your Visit</h2>
+      <p class="section-sub">Fill out the form below and our team will reach out within one business day to confirm your appointment.</p>
+      <div class="contact-wrap">
+        <form id="contactForm" onsubmit="return handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@email.com">
+          </div>
+          <div class="form-group">
+            <label for="call_time">Preferred Call Time</label>
+            <select id="call_time" name="call_time">
+              <option value="">Select a time</option>
+              <option value="morning">Morning (9am - 12pm)</option>
+              <option value="afternoon">Afternoon (12pm - 5pm)</option>
+              <option value="evening">Evening (5pm - 7pm)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="cleaning">Teeth Cleaning & Exam</option>
+              <option value="whitening">Teeth Whitening</option>
+              <option value="implants">Dental Implants</option>
+              <option value="invisalign">Invisalign</option>
+              <option value="root_canal">Root Canal</option>
+              <option value="emergency">Emergency Dental Care</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="123 Main St, Brooklyn, NY">
+          </div>
+          <div class="form-group">
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" placeholder="Any concerns, questions, or details about your dental needs..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-teal" style="width:100%;">Request Appointment</button>
+          <div id="formMsg" style="margin-top:14px; text-align:center; font-weight:600; display:none;"></div>
+        </form>
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <p><strong>Phone:</strong> <a href="tel:5550000000">(555) 000-0000</a></p>
+          <p><strong>Email:</strong> <a href="mailto:info@brightsmiledental.com">info@brightsmiledental.com</a></p>
+          <p><strong>Address:</strong> 456 Atlantic Ave, Suite 200<br>Brooklyn, NY 11217</p>
+          <p><strong>Hours:</strong><br>
+            Mon - Fri: 8:00am - 6:00pm<br>
+            Saturday: 9:00am - 3:00pm<br>
+            Sunday: Closed
+          </p>
+          <h3 style="margin-top:28px;">Service Areas</h3>
+          <p>Proudly serving families across Brooklyn and Queens:</p>
+          <ul class="area-list">
+            <li>Park Slope</li>
+            <li>Astoria</li>
+            <li>Williamsburg</li>
+            <li>Flushing</li>
+            <li>Downtown Brooklyn</li>
+            <li>Long Island City</li>
+            <li>Brooklyn Heights</li>
+            <li>Jackson Heights</li>
+            <li>DUMBO</li>
+            <li>Forest Hills</li>
+            <li>Cobble Hill</li>
+            <li>Sunnyside</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Bright Smile Dental</h4>
+        <p style="font-size:0.9rem; line-height:1.7;">Gentle, modern dentistry for the whole family. Serving Brooklyn and Queens with compassion and excellence since 2011.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">Teeth Cleaning &amp; Exam</a>
+        <a href="#services">Teeth Whitening</a>
+        <a href="#services">Dental Implants</a>
+        <a href="#services">Invisalign</a>
+        <a href="#services">Root Canal</a>
+        <a href="#services">Emergency Care</a>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#about">About Dr. Chen</a>
+        <a href="#testimonials">Patient Reviews</a>
+        <a href="#contact">Book Appointment</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#services">Pricing</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:5550000000">(555) 000-0000</a>
+        <a href="mailto:info@brightsmiledental.com">info@brightsmiledental.com</a>
+        <p style="font-size:0.9rem; margin-top:6px;">456 Atlantic Ave, Suite 200<br>Brooklyn, NY 11217</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Bright Smile Dental. All rights reserved. | <a href="#" style="color:rgba(255,255,255,0.7);">Privacy Policy</a> | <a href="#" style="color:rgba(255,255,255,0.7);">Accessibility</a>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      var form = document.getElementById('contactForm');
+      var msg = document.getElementById('formMsg');
+      var data = Object.fromEntries(new FormData(form));
+      console.log('Form submission:', data);
+      msg.style.display = 'block';
+      msg.style.color = '#0d9488';
+      msg.textContent = 'Thank you! We will call you within one business day to confirm your appointment.';
+      form.reset();
+      setTimeout(function() { msg.style.display = 'none'; }, 6000);
+      return false;
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
