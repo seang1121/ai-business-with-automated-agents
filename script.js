@@ -1,5 +1,5 @@
 /* ============================================================
-   Hamptons Elite Powerwashing — script.js
+   AI Business with Automated Agents — script.js
    Features:
    - Mobile hamburger menu toggle (full-screen overlay)
    - Smooth scroll for anchor links

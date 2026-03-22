@@ -1,5 +1,5 @@
 ============================================================
-HAMPTONS ELITE POWERWASHING — BUSINESS PLAN & ROADMAP
+[YOUR BUSINESS NAME] — BUSINESS PLAN & ROADMAP
 ============================================================
 Generated: March 2026
 Keep this file. It contains your setup instructions,
@@ -19,7 +19,7 @@ STEP 1 — Add your real phone number
 STEP 2 — Set up Formspree (for your contact form)
   a. Go to https://formspree.io
   b. Create a free account
-  c. Click "New Form" and name it (e.g. "Hamptons Elite Quote")
+  c. Click "New Form" and name it (e.g. "My Business Quote")
   d. Copy the Form ID (looks like: xabcdefg)
   e. In index.html, find: YOUR_FORMSPREE_ID
   f. Replace it with your ID
@@ -56,9 +56,9 @@ STEP 5 — Set up Google Business Profile
 
 STEP 6 — Go live on Netlify (free hosting)
   a. Go to https://netlify.com/drop (or netlify.com, click Sites > Add)
-  b. Drag your entire hamptons-elite-powerwashing/ folder onto the page
+  b. Drag your entire project folder onto the page
   c. Netlify gives you a URL like random-name.netlify.app immediately
-  d. You can connect a custom domain (hamptonsepowerwashing.com) later
+  d. You can connect a custom domain (yourbusiness.com) later
   Done — your site is live in under 60 seconds.
 
 
@@ -235,7 +235,7 @@ What makes this site different:
 CONTACT & CREDENTIALS
 ============================================================
 
-Website email placeholder: info@hamptonsepowerwashing.com
+Website email placeholder: info@yourbusiness.com
   (Set up a real email or forward to your personal one)
 
 Formspree: https://formspree.io (free tier = 50 submissions/month)
@@ -249,5 +249,5 @@ END OF BUSINESS PLAN
 Keep this file safe. It's your roadmap for Phase 1 (website)
 and Phase 2 (AI agents). The website files are in this folder.
 A backup copy is saved at:
-  C:\Users\Sean Goudy\Documents\hamptons-elite-powerwashing-plan.txt
+  [Your backup location]
 ============================================================
