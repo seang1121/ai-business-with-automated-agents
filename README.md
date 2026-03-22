@@ -146,6 +146,114 @@ Each example includes realistic services, pricing, hours, agent tone settings, t
 
 ---
 
+## How Agents Adapt by Business Type
+
+Every agent reads `business_config.yaml` at runtime — the business name, type, services, tone, and settings all flow into the AI prompts and mock templates automatically. Here's what changes across industries:
+
+### Leads Agent
+
+The leads agent drafts a follow-up message when someone submits the contact form. The **tone** and **language** change completely based on the business type:
+
+| Business | Config Setting | Example Draft |
+|----------|---------------|---------------|
+| Pressure Washing | `response_tone: "friendly and professional"` | *"Hi Mike, thanks for reaching out! We'd love to help with your driveway cleaning. I'll follow up shortly to schedule a free estimate."* |
+| Law Firm | `response_tone: "empathetic, professional, and reassuring"` | *"Hi Maria, thank you for reaching out to Smith & Associates. We understand this is a difficult time. Sarah Smith, Esq. will personally contact you to discuss your divorce consultation in complete confidence."* |
+| Dental Office | `response_tone: "warm, professional, and calming"` | *"Hi Jennifer, thanks for contacting Bright Smile Dental! Dr. Chen specializes in making every visit comfortable, especially for patients who are nervous. We'll reach out to schedule your cleaning."* |
+| Restaurant | `response_tone: "warm, inviting, and enthusiastic about food"` | *"Hi Tom, thank you for your interest in catering! Marco would love to discuss your wedding reception. We'll be in touch soon to talk menu options and guest count."* |
+
+**What drives the difference:** The `response_tone` field is injected directly into the Claude prompt. The agent also pulls the owner name, service list, and area from config so the message sounds hyper-local and personal.
+
+### Estimating Agent
+
+The estimating agent calculates a price range using `starting_price` from the service list and `size_multipliers` from config:
+
+| Business | Service | Base Price | Small (1.0x) | Medium (1.5x) | Large (2.2x) |
+|----------|---------|-----------|-------------|---------------|-------------|
+| Pressure Washing | Driveway Cleaning | $150 | $150 | $225 | $330 |
+| Law Firm | Divorce Consultation | $500 | $500 | $1,000 | $1,750 |
+| Dental | Dental Implants | $3,000 | $3,000 | $3,900 | $5,400 |
+| Auto Detailing | Ceramic Coating | $500 | $500 | $650 | $800 |
+
+**What drives the difference:** Each business defines its own `size_multipliers` in config. A law firm's "large" multiplier (3.5x) is much bigger than a pressure washer's (2.2x) because case complexity varies more than driveway size. The unit labels also change — "per job" vs "consultation" vs "per implant."
+
+### Scheduling Agent
+
+The scheduling agent reads `hours` and `slot_duration_minutes` from config:
+
+| Business | Hours | Slot Duration | Buffer |
+|----------|-------|---------------|--------|
+| Pressure Washing | Mon-Sat 7AM-7PM | 60 min | 30 min between jobs |
+| Law Firm | Mon-Fri 9AM-5PM | 30 min | 15 min between appointments |
+| Dental | Mon-Sat 8AM-6PM | 30 min | 15 min between patients |
+| Restaurant | Tue-Sun (closed Mon) | 120 min | 60 min between events |
+| Landscaping | Mon-Sat 6:30AM-6PM | 60 min | 45 min (travel time) |
+
+**What drives the difference:** A dentist needs 30-minute slots with 15-minute turnover. A restaurant books 2-hour event windows. A landscaper starts at 6:30 AM. The scheduling agent reads all of this from config and never suggests a Sunday slot for a law firm or a Monday slot for a restaurant.
+
+### Reviews Agent
+
+The reviews agent drafts a thank-you + Google review request after job completion:
+
+| Business | Delay After Completion | Example Draft |
+|----------|----------------------|---------------|
+| Pressure Washing | 2 hours | *"Hi Susan, your siding looks amazing! If you have a sec, a quick Google review helps your neighbors find us."* |
+| Law Firm | 24 hours | *"Thank you for trusting Smith & Associates with your custody case. If you felt well-represented, a review helps other families in similar situations find compassionate counsel."* |
+| Dental | 4 hours | *"Hi James, we hope your cleaning went smoothly! If you had a positive experience, a Google review helps other patients who might be nervous about the dentist."* |
+| Restaurant | 12 hours | *"Hi Linda, it was an honor to cater your wedding! If the food brought joy to your day, a quick review helps other couples discover Nonna's Kitchen."* |
+
+**What drives the difference:** `delay_after_completion_hours` controls when the review request fires. A law firm waits 24 hours (sensitivity of the matter). A pressure washer sends within 2 hours (while the clean driveway is still exciting). The tone in the prompt adapts to match — empathetic for legal, enthusiastic for food.
+
+### Finance Agent
+
+The finance agent generates invoices using business-specific tax rates and payment methods:
+
+| Business | Tax Rate | Payment Methods | Invoice Prefix |
+|----------|----------|----------------|---------------|
+| Pressure Washing | 8.625% (NY) | Cash, Venmo, Check, Credit Card | INV |
+| Law Firm | 0% (exempt) | Check, Credit Card, Wire Transfer | SFA |
+| Dental | 0% (medical exempt) | Insurance, Credit Card, CareCredit, Cash | BSD |
+| Restaurant | 8.875% (NY + Westchester) | Credit Card, Cash, Venmo, Check | NK |
+| Auto Detailing | 8.25% (TX) | Cash, Venmo, Zelle, Credit Card | APX |
+
+**What drives the difference:** `tax_rate` and `payment_methods` are in config. Legal and medical services are tax-exempt. A dental office lists "Insurance" and "CareCredit" as payment options. A Texas auto detailer uses the TX rate. The invoice prefix creates numbering like `SFA-1001` (law firm) vs `APX-1001` (auto detailing).
+
+### Marketing Agent
+
+The marketing agent drafts social media posts using platform-specific settings:
+
+| Business | Platforms | Hashtags |
+|----------|----------|----------|
+| Pressure Washing | Facebook, Instagram | #localbusiness #beforeandafter |
+| Law Firm | LinkedIn, Facebook | #familylaw #divorceattorney #nassaucounty #legalhelp |
+| Dental | Instagram, Facebook | #dentist #brightersmile #brooklyndentist #cosmeticdentistry |
+| Restaurant | Instagram, Facebook, TikTok | #italianfood #catering #westchestereats #foodie |
+| Real Estate | Instagram, Facebook, TikTok | #miamirealestate #homesearch #dreamhome #justlisted |
+| Landscaping | Facebook, Instagram, NextDoor | #landscaping #lawncare #curbappeal #greenthumb |
+
+**What drives the difference:** A law firm posts on LinkedIn (professional audience). A restaurant targets TikTok and Instagram (visual food content). A landscaper uses NextDoor (hyperlocal neighborhood network). The hashtags are industry-specific and location-tagged.
+
+### Summary: What Each Config Field Controls
+
+| Config Field | Which Agents Use It | What Changes |
+|-------------|--------------------|----|
+| `business.name` | All 6 | Business name in every draft |
+| `business.type` | All 6 | Industry context in AI prompts |
+| `business.owner_name` | All 6 | Sign-off name on messages |
+| `business.services[]` | Leads, Estimating, Finance | Service names, pricing, categories |
+| `business.hours` | Scheduling | Available time slots |
+| `business.slot_duration_minutes` | Scheduling | Appointment length |
+| `business.google_review_link` | Reviews | Link in review request |
+| `agents.leads.response_tone` | Leads | AI prompt tone instruction |
+| `agents.scheduling.slots_to_suggest` | Scheduling | Number of options offered |
+| `agents.reviews.delay_after_completion_hours` | Reviews | When review request fires |
+| `agents.finance.tax_rate` | Finance | Tax calculation on invoices |
+| `agents.finance.payment_methods` | Finance | Listed on invoices |
+| `agents.marketing.platforms` | Marketing | Which social networks to target |
+| `agents.marketing.hashtags` | Marketing | Tags appended to posts |
+| `agents.estimating.size_multipliers` | Estimating | Price range calculation |
+
+---
+
 ## Project Structure
 
 ```
